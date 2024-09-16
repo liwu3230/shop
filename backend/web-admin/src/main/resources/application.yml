@@ -1,0 +1,123 @@
+server:
+  port: 6666
+  servlet:
+    context-path: /
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: admin-${spring.profiles.active}
+  servlet:
+    multipart:
+      maxFileSize: 1024MB
+      maxRequestSize: 1024MB
+  cache:
+    type: caffeine # redis/caffeine
+
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+    default-property-inclusion: ALWAYS
+
+  datasource:
+    primary:
+      name: primaryDs
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/qm_shop?useSSL=false&serverTimezone=Asia/Shanghai&autoReconnect=true&sessionVariables=FOREIGN_KEY_CHECKS=0&useUnicode=true&characterEncoding=UTF-8&rewriteBatchedStatements=true&allowMultiQueries=true&useInformationSchema=true&nullCatalogMeansCurrent=true
+      username: root
+      password: yy123456
+      type: com.alibaba.druid.pool.DruidDataSource
+      initial-size: 10
+      max-active: 100
+      min-idle: 10
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      validation-query-timeout: 3600
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      keep-alive: true
+      async-init: true #initialSize数量较多时，打开会加快应用启动时间
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 5000
+          merge-sql: true
+          enabled: false
+        wall:
+          config:
+            multi-statement-allow: true
+            none-base-statement-allow: true
+        slf4j:
+          enabled: true
+          statement-log-enabled: true
+          statement-sql-pretty-format: true
+          statement-log-error-enabled: true
+          statement-executable-sql-log-enable: true
+          statement-create-after-log-enabled: false
+          statement-parameter-set-log-enabled: false
+          statement-execute-after-log-enabled: false
+          statement-close-after-log-enabled: false
+          statement-prepare-after-log-enabled: false
+          statement-prepare-call-after-log-enabled: false
+          statement-execute-query-after-log-enabled: false
+          statement-execute-update-after-log-enabled: false
+          statement-execute-batch-after-log-enabled: false
+          statement-parameter-clear-log-enable: false
+      stat-view-servlet:
+        enabled: false
+
+  redis:
+    database: 0
+    host: 119.91.227.31
+    port: 16379
+    password: yy123456
+    timeout: 6000
+    lettuce:
+      pool:
+        max-active: 100 #连接池最大连接数（使用负值表示没有限制）
+        max-idle: 10 #连接池中的最大空闲连接
+        max-wait: 60000 #连接池最大阻塞等待时间（使用负值表示没有限制）
+
+#mybatis:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+security:
+  ignoreUrls:
+    - /actuator/health
+    - /druid/**
+    - /swagger-ui.html
+    - /webjars/**
+    - /swagger-resources/**
+    - /v2/**
+    - /flowable/task/diagram/**
+    - /clientDetails/token
+    - /file/download
+
+storage:
+  dir: /data/store
+
+swagger:
+  enable: true
+  application-name: ${spring.application.name}
+  application-version: 2.0
+  application-description: cmdb swagger 2.0
+  try-host: localhost:${server.port}
+
+
+
+
+
+
+
+
+
+
+
+

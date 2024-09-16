@@ -1,0 +1,110 @@
+package ${controllerPackage};
+
+import com.alibaba.excel.EasyExcel;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.example.backend.common.excel.exporter.ExportHandler;
+import ${exportHeadPackage}.${clazzName}Export;
+import ${importHeadPackage}.${clazzName}Import;
+import ${importListenerPackage}.${clazzName}ImportListener;
+import org.example.backend.common.model.BaseParam;
+import org.example.backend.common.model.R;
+import ${paramPackage}.${clazzName}Param;
+import org.example.backend.common.security.utils.AuthenticationUtil;
+import ${servicePackage}.${clazzName}Service;
+import org.example.backend.common.utils.T;
+import org.mapstruct.Context;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+
+@Slf4j
+@RestController
+@RequestMapping("/${className}")
+public class ${clazzName}Controller {
+
+    @Resource
+    private ${clazzName}Service ${className}Service;
+    @Resource
+    private ExportHandler exportHandler;
+
+    @RequestMapping("/list")
+    public R pageList(@RequestBody @Validated(BaseParam.list.class) ${clazzName}Param param) {
+        return R.data(${className}Service.pageList(param));
+    }
+
+    @PostMapping("/saveOrUpdate")
+    public R saveOrUpdate(@RequestBody @Validated({BaseParam.add.class, BaseParam.edit.class}) ${clazzName}Param param) {
+        ${className}Service.saveOrUpdate(param);
+        return R.ok();
+    }
+
+    @RequestMapping("/deleteById")
+    public R deleteById(@RequestParam Integer id) {
+        ${className}Service.deleteById(id);
+        return R.ok();
+    }
+
+    @RequestMapping("/getById")
+    public R getById(@RequestParam Integer id) {
+        return R.ok().setData(${className}Service.getById(id));
+    }
+
+    @RequestMapping("/findAll")
+    public R findAll() {
+        return R.data(${className}Service.findAll());
+    }
+
+    @PostMapping("/import")
+    @ResponseBody
+    public R importFile(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request) throws Exception {
+        String userName = AuthenticationUtil.getUserName();
+        if (StringUtils.isBlank(userName)) {
+            return R.error("用户不存在,请先登录！");
+        }
+        if (file == null) {
+            return R.error("请上传文件！");
+        }
+        try {
+            String originalFilename = file.getOriginalFilename();
+            if (T.isBlank(originalFilename)) {
+                return R.error("文件名不能为空！");
+            }
+            if (!originalFilename.endsWith(".xls") && !originalFilename.endsWith(".xlsx")) {
+                return R.error("只支持.xlsx或.xls文件上传！");
+            }
+            EasyExcel.read(file.getInputStream(), ${clazzName}Import.class, new ${clazzName}ImportListener()).sheet().doRead();
+            return R.ok();
+        } catch (Exception ex) {
+            log.error("importFile error", ex);
+            return R.error("导入失败：\n" + ex.getMessage());
+        }
+    }
+
+    @PostMapping("/export")
+    public void exportFile(@RequestBody @Validated(BaseParam.list.class) ${clazzName}Param param,
+                           @Context HttpServletResponse response) throws Exception {
+        try {
+            String fileName = T.UUID();
+            fileName = URLEncoder.encode(fileName, "UTF-8").replaceAll("\\+", "%20");
+            response.setContentType("application/vnd.ms-excel");
+            response.setCharacterEncoding("utf-8");
+            response.setHeader("Access-Control-Expose-Headers", "Content-disposition");
+            response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".xlsx");
+            exportHandler.handleExport(${className}Service.exportList(param), ${clazzName}Export.class, response.getOutputStream());
+        } catch (Exception e) {
+            log.error("exportFile error", e);
+//            response.reset();
+            response.setContentType("application/json");
+            response.setCharacterEncoding("utf-8");
+            response.getOutputStream().write(R.error("导出失败：" + e.getMessage()).toJSONString().getBytes(StandardCharsets.UTF_8));
+        }
+    }
+
+}

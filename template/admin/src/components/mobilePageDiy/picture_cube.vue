@@ -80,7 +80,7 @@ export default {
   name: 'picture_cube',
   cname: '图片魔方',
   configName: 'c_picture_cube',
-  icon: 'iconshangpinfenlei1',
+  icon: 'iconcuxiaoliebiao1',
   type: 0, // 0 基础组件 1 营销组件 2工具组件
   defaultName: 'pictureCube', // 外面匹配名称
   props: {

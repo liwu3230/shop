@@ -417,6 +417,11 @@
 					that.storeImage = that.storeInfo.image
 					// #endif
 					that.DefaultSelect();
+					app.globalData.openPages = '/pages/activity/goods_seckill_details/index?id=' + that.id +
+						'&time=' + that.time +
+						'&status=' + that.status + '&scene=' + that.storeInfo.uid;
+					// wxParse.wxParse('description', 'html', that.data.storeInfo.description || '', that, 0);
+					// wxh.time(that.data.time, that);
 				}).catch(err => {
 					that.$util.Tips({
 						title: err

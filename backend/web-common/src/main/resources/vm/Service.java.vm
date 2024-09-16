@@ -1,0 +1,97 @@
+package ${servicePackage};
+
+import com.google.common.base.Preconditions;
+import cn.hutool.core.lang.Pair;
+import lombok.extern.slf4j.Slf4j;
+import ${exportHeadPackage}.${clazzName}Export;
+import org.example.backend.common.model.Page;
+import ${paramPackage}.${clazzName}Param;
+import ${daoPackage}.${clazzName}Dao;
+    ${clazzName};
+import org.example.backend.common.primary.entity.${clazzName}Example;
+import org.example.backend.common.security.utils.AuthenticationUtil;
+import org.example.backend.common.utils.T;
+import org.springframework.beans.BeanUtils;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
+import java.util.List;
+import java.util.function.BiFunction;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+
+@Slf4j
+@Service
+public class ${clazzName}Service {
+
+    @Resource
+    ${clazzName}Dao ${className}Dao;
+
+    public Page<${clazzName}> pageList(${clazzName}Param param) {
+        ${clazzName}Example example = getExample(param);
+        long count = ${className}Dao.countByExample(example);
+        example.setLimit(param.getLimit());
+        example.setOffset(param.getOffset());
+//        example.setOrderByClause(" create_time desc");
+        List<${clazzName}> list = ${className}Dao.selectByExample(example);
+        return new Page<>(list, param.getPage(), param.getLimit(), count);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void saveOrUpdate(${clazzName}Param param) {
+        Integer currentUserId = AuthenticationUtil.getUserId();
+
+        ${clazzName} entity = new ${clazzName}();
+        BeanUtils.copyProperties(param, entity);
+        if (T.GT(param.getId(), 0)) {
+            ${clazzName} old = ${className}Dao.selectByPrimaryKey(param.getId());
+            Preconditions.checkNotNull(old, "该记录不存在！");
+
+            ${className}Dao.updateByPrimaryKey(entity);
+        } else {
+
+
+            ${className}Dao.insert(entity);
+        }
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteById(Integer id) {
+        Integer currentUserId = AuthenticationUtil.getUserId();
+        ${clazzName} ${className} =${className}Dao.selectByPrimaryKey(id);
+        Preconditions.checkNotNull(${className}, "该记录不存在！");
+        ${className}Dao.deleteByPrimaryKey(id);
+    }
+
+    public ${clazzName} getById(Integer id) {
+        return ${className}Dao.selectByPrimaryKey(id);
+    }
+
+    public List<${clazzName}> findAll() {
+        return ${className}Dao.selectByExample(null);
+    }
+
+    public Pair<Supplier<Long>, BiFunction<Integer, Integer, List<${clazzName}Export>>> exportList(${clazzName}Param param) {
+        ${clazzName}Example example = getExample(param);
+        return new Pair<>(() -> ${className}Dao.countByExample(example), (limit, offset) -> {
+            example.setLimit(limit);
+            example.setOffset(offset);
+//            example.setOrderByClause(" create_time desc");
+            return ${className}Dao.selectByExample(example).stream().map(e -> {
+                ${clazzName}Export head = new ${clazzName}Export();
+                BeanUtils.copyProperties(e, head);
+                return head;
+            }).collect(Collectors.toList());
+        });
+    }
+
+    private ${clazzName}Example getExample(${clazzName}Param param) {
+        ${clazzName}Example example = new ${clazzName}Example();
+        ${clazzName}Example.Criteria criteria = example.createCriteria();
+        if (T.GT(param.getId(), 0)) {
+            criteria.andIdEqualTo(param.getId());
+        }
+        return example;
+    }
+
+}

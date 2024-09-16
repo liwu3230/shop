@@ -1,0 +1,15 @@
+.DS_Store*
+.svn
+.mvn
+*.iml
+*.classpath
+*.project
+target/
+.idea/
+.settings/
+.project
+*.versionsBackup
+mvnw
+mvnw.*
+*.logShieldFeatureService.java
+data/

@@ -484,6 +484,7 @@
 			// #endif
 			if (options.hasOwnProperty('id')) {
 				this.id = options.id
+				// app.globalData.openPages = '/pages/activity/goods_combination_details/index?id=' + this.id + '&spid=' + this.userInfo.uid;
 				if (this.isLogin) {
 					this.combinationDetail();
 				} else {
@@ -857,6 +858,9 @@
 			// 授权后回调
 			onLoadFun: function(e) {
 				this.userInfo = e
+				app.globalData.openPages = '/pages/activity/goods_combination_details/index?id=' + this.id + '&spid=' +
+					e.uid;
+				// this.downloadFilePromotionCode();
 				this.combinationDetail();
 			},
 			selecAttr: function() {
@@ -1257,7 +1261,7 @@
 		onShareAppMessage() {
 			return {
 				title: this.storeInfo.title,
-				path: '/pages/activity/goods_combination_details/index?id=' + this.id + '&spid=' + this.$store.state.app.uid,
+				path: app.globalData.openPages,
 				imageUrl: this.storeInfo.image
 			};
 		}

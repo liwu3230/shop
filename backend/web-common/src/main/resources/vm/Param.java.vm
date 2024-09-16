@@ -1,0 +1,13 @@
+package ${paramPackage};
+
+import lombok.Getter;
+import lombok.Setter;
+import org.example.backend.common.model.BaseParam;
+
+@Getter
+@Setter
+public class ${clazzName}Param extends BaseParam {
+
+    private Integer id;
+
+}

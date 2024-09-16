@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <!--    <classPathEntry location=".\mysql-connector-java-8.0.23.jar"/>-->
+    <!--Mybatis Generator目前有5种运行模式，分别为：MyBatis3DynamicSql、MyBatis3Kotlin、MyBatis3、MyBatis3Simple、MyBatis3DynamicSqlV1-->
+    <context id="context1" targetRuntime="MyBatis3">
+        <!-- 自动识别数据库关键字，默认false -->
+        <property name="autoDelimitKeywords" value="true"/>
+        <!--可以使用``包括字段名，避免字段名与sql保留字冲突报错 -->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!-- 格式化java代码 -->
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <!-- 格式化XML代码 -->
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+        <!-- 为模型生成序列化方法-->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <!-- 生成大小写敏感的LIKE方法-->
+        <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin"/>
+        <!-- 为生成的Java模型创建一个toString方法 -->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <!--生成mapper.xml时覆盖原文件-->
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"/>
+        <!--分页-->
+        <plugin type="org.example.backend.common.generator.plugins.MySqlLimitPlugin"/>
+
+        <!-- 自定义注释生成器 -->
+        <commentGenerator type="org.example.backend.common.generator.plugins.MySQLCommentGenerator">
+            <property name="author" value="liwu3"/>
+            <property name="dateFormat" value="yyyy/MM/dd HH:mm"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/order_platform?serverTimezone=Asia/Shanghai"
+                        userId="root"
+                        password="yy123456">
+            <!--解决mysql驱动升级到8.0后不生成指定数据库代码的问题-->
+            <property name="nullCatalogMeansCurrent" value="true"/>
+            <property name="remarks" value="true"/>
+            <!-- 针对oracle数据库 -->
+            <property name="remarksReporting" value="true"/>
+            <!-- 针对mysql数据库 -->
+            <property name="useInformationSchema" value="true"/>
+        </jdbcConnection>
+
+        <javaTypeResolver type="org.example.backend.common.generator.plugins.CustomJavaTypeResolver"/>
+
+        <javaModelGenerator targetPackage="org.example.backend.common.primary.entity"
+                            targetProject="backend\web-common\src\main\java"/>
+        <sqlMapGenerator targetPackage="mapper" targetProject="backend\web-common\src\main\resources"/>
+        <javaClientGenerator targetPackage="org.example.backend.common.primary.base.dao"
+                             targetProject="backend\web-common\src\main\java"
+                             type="ANNOTATEDMAPPER"/>
+
+        <!--        <table tableName="sys_dict" domainObjectName="SysDict" mapperName="SysDictDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--        </table>-->
+
+        <!--        <table tableName="sys_menu" domainObjectName="SysMenu" mapperName="SysMenuDao" enableCountByExample="true"-->
+        <!--               enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
+        <!--        </table>-->
+
+        <!--        <table tableName="sys_role" domainObjectName="SysRole" mapperName="SysRoleDao" enableCountByExample="true"-->
+        <!--               enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
+        <!--        </table>-->
+
+        <!--        <table tableName="sys_role_menu" domainObjectName="SysRoleMenu" mapperName="SysRoleMenuDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--        </table>-->
+
+        <!--        <table tableName="sys_user" domainObjectName="SysUser" mapperName="SysUserDao" enableCountByExample="true"-->
+        <!--               enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
+        <!--        </table>-->
+
+        <!--        <table tableName="sys_user_role" domainObjectName="SysUserRole" mapperName="SysUserRoleDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--        </table>-->
+
+        <!--        <table tableName="sys_dept" domainObjectName="SysDept" mapperName="SysDeptDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--        </table>-->
+
+        <!--        <table tableName="sys_city" domainObjectName="SysCity" mapperName="SysCityDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--        </table>-->
+
+        <!--        <table tableName="sys_operate_log" domainObjectName="SysOperateLog" mapperName="SysOperateLogDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--        </table>-->
+
+<!--                <table tableName="m_app_user" domainObjectName="AppUser" mapperName="AppUserDao"-->
+<!--                       enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+<!--                       enableSelectByExample="true" selectByExampleQueryId="true">-->
+<!--                    <generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
+<!--                </table>-->
+
+        <!--        <table tableName="m_app_user_address" domainObjectName="AppUserAddress" mapperName="AppUserAddressDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
+        <!--        </table>-->
+
+        <!--        <table tableName="m_app_user_exam_bind" domainObjectName="AppUserExamBind" mapperName="AppUserExamBindDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--        </table>-->
+
+<!--        <table tableName="m_attachment" domainObjectName="Attachment" mapperName="AttachmentDao"-->
+<!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+<!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+<!--        </table>-->
+
+        <!--                <table tableName="m_config" domainObjectName="SysConfig" mapperName="SysConfigDao"-->
+        <!--                       enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--                       enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--                    <generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--                </table>-->
+
+        <!--        <table tableName="m_exam_config" domainObjectName="ExamConfig" mapperName="ExamConfigDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--        </table>-->
+
+        <!--        <table tableName="m_msg_record" domainObjectName="MsgRecord" mapperName="MsgRecordDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--        </table>-->
+
+        <!--        <table tableName="m_project" domainObjectName="Project" mapperName="ProjectDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--        </table>-->
+
+        <!--        <table tableName="m_store" domainObjectName="Store" mapperName="StoreDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--        </table>-->
+
+                <table tableName="m_task" domainObjectName="TaskInfo" mapperName="TaskInfoDao"
+                       enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+                       enableSelectByExample="true" selectByExampleQueryId="true">
+                    <generatedKey column="id" sqlStatement="JDBC"/>
+                </table>
+
+        <!--        <table tableName="m_task_store_bind" domainObjectName="TaskStoreBind" mapperName="TaskStoreBindDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--        </table>-->
+
+        <!--        <table tableName="m_task_app_user_bind" domainObjectName="TaskAppUserBind" mapperName="TaskAppUserBindDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--        </table> -->
+
+        <!--        <table tableName="m_template_message" domainObjectName="TemplateMessage" mapperName="TemplateMessageDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--        </table>-->
+
+        <!--        <table tableName="m_app_user_cert" domainObjectName="AppUserCert" mapperName="AppUserCertDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--        </table>-->
+
+<!--        <table tableName="m_task_order" domainObjectName="TaskOrder" mapperName="TaskOrderDao"-->
+<!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+<!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+<!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
+<!--        </table>-->
+
+        <!--        <table tableName="m_task_order_bill" domainObjectName="TaskOrderBill" mapperName="TaskOrderBillDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--        </table>-->
+
+        <!--        <table tableName="m_task_tag" domainObjectName="TaskTag" mapperName="TaskTagDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--        </table>-->
+
+        <!--        <table tableName="m_user_tag" domainObjectName="AppUserTag" mapperName="AppUserTagDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--        </table>-->
+
+        <!--        <table tableName="m_article" domainObjectName="Article" mapperName="ArticleDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--        </table>-->
+
+        <!--        <table tableName="m_client_details" domainObjectName="ClientDetails" mapperName="ClientDetailsDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--            &lt;!&ndash;            <columnOverride column="resource_ids" javaType="java.lang.String" jdbcType="VARCHAR" />&ndash;&gt;-->
+        <!--        </table>-->
+
+
+    </context>
+</generatorConfiguration>
