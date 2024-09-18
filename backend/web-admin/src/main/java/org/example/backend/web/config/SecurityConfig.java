@@ -2,6 +2,7 @@ package org.example.backend.web.config;
 
 import jakarta.annotation.Resource;
 import org.example.backend.web.filter.JwtAuthTokenFilter;
+import org.example.backend.web.filter.manager.AESEncryptPasswordEncoder;
 import org.example.backend.web.filter.manager.AuthUserDetailsService;
 import org.example.backend.web.filter.manager.CustomAccessDeniedHandler;
 import org.example.backend.web.filter.manager.CustomAuthenticationEntryPoint;
@@ -17,6 +18,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -48,9 +50,15 @@ public class SecurityConfig {
     }
 
     @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new AESEncryptPasswordEncoder();
+    }
+
+    @Bean
     protected AuthenticationManager AuthenticationManager() {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setUserDetailsService(authUserDetailsService);
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         return new ProviderManager(daoAuthenticationProvider);
     }
 

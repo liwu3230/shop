@@ -12,6 +12,9 @@ spring:
     multipart:
       maxFileSize: 1024MB
       maxRequestSize: 1024MB
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   cache:
     type: caffeine # redis/caffeine
 

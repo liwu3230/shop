@@ -15,13 +15,13 @@ import java.util.Objects;
 
 public class R extends HashMap<String, Object> {
 
-    public static final int CODE_OK = 0;
+    public static final int CODE_OK = 200;
     public static final int CODE_ERROR_NEG1 = -1;
     public static final int CODE_ERROR_1 = 1;
     public static final int CODE_ERROR_500 = 500;
     public static final int CODE_WARN = -2;
-    public static final String CODE = "code";
-    public static final String MSG = "message";
+    public static final String CODE = "status";
+    public static final String MSG = "msg";
     public static final String DATA = "data";
     public static final String PAGE = "page";
     public static final String SUCCESS = "success";

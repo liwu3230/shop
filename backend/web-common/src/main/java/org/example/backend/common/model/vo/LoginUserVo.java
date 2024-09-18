@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @Description:
@@ -85,11 +86,17 @@ public class LoginUserVo implements UserDetails {
     @JsonIgnore
     @Override
     public String getPassword() {
+        if(Objects.nonNull(user)){
+            return user.getPwd();
+        }
         return null;
     }
 
     @Override
     public String getUsername() {
+        if(Objects.nonNull(user)){
+            return user.getAccount();
+        }
         return null;
     }
 

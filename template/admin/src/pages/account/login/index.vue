@@ -249,6 +249,7 @@ export default {
           });
         })
         .catch((res) => {
+          debugger
           let data = res === undefined ? {} : res;
           this.$message.error(data.msg || '登录失败');
           this.login_captcha = res.data.login_captcha;
