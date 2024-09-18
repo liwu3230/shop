@@ -9,12 +9,12 @@ import ${paramPackage}.${clazzName}Param;
 import ${daoPackage}.${clazzName}Dao;
     ${clazzName};
 import org.example.backend.common.primary.entity.${clazzName}Example;
-import org.example.backend.common.security.utils.AuthenticationUtil;
+import org.example.backend.common.utils.AuthenticationUtil;
 import org.example.backend.common.utils.T;
 import org.springframework.beans.BeanUtils;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;

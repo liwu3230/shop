@@ -2,7 +2,7 @@ package org.example.backend.common.utils;
 
 import lombok.extern.slf4j.Slf4j;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
 
 /**
@@ -15,11 +15,15 @@ public class TokenUtil {
 
     public static String BEARER_TYPE = "Bearer";
     public static String ACCESS_TOKEN = "accessToken";
+    public static final String AUTHORIZATION_KEY = "Authori-zation";
 
     public static String extractToken(HttpServletRequest request) {
-        // first check the header...
-        String token = extractHeaderToken(request);
+        String token = request.getHeader(AUTHORIZATION_KEY);
+        if (T.isNotBlank(token)) {
+            return token;
+        }
 
+        token = extractHeaderToken(request);
         // bearer type allows a request parameter as well
         if (token == null) {
             log.debug("Token not found in headers. Trying request parameters.");

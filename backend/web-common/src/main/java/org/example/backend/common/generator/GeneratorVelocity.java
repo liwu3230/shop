@@ -22,20 +22,7 @@ public class GeneratorVelocity {
 
     public static void main(String[] args) throws Exception {
         Map<String, String> map = new HashMap<String, String>() {{
-//            put("appUserAddress", "用户地址");
-//            put("sysConfig", "系统配置");
-//            put("examConfig", "考试配置");
-//            put("msgRecord", "消息记录");
-//            put("project", "项目");
-//            put("store", "网点");
-//            put("taskInfo", "任务");
-//            put("taskOrder", "订单");
-//            put("taskOrderBill", "账单");
-//            put("taskTag", "任务标签");
-//            put("appUserTag", "用户标签");
-//            put("article", "文章");
-//            put("clientDetails", "应用");
-            put("templateMessage", "订阅消息");
+            put("systemAdmin", "用户地址");
         }};
 
         map.forEach((clazz, desc) -> {

@@ -1,5 +1,5 @@
 server:
-  port: 6666
+  port: 7777
   servlet:
     context-path: /
 
@@ -96,19 +96,23 @@ security:
     - /webjars/**
     - /swagger-resources/**
     - /v2/**
-    - /flowable/task/diagram/**
-    - /clientDetails/token
-    - /file/download
+    - /*.html
+    - /**/*.html
+    - /**/*.css
+    - /**/*.js
+    - /profile/**
+    - /common/download**
+    - /common/download/resource**
+    - /api/admin/login
+    - /api/admin/getLoginPic
+    - /api/admin/upload/image
+    - /api/admin/upload/file
+    - /api/admin/payment/callback/**
+    - /api/public/**
 
 storage:
   dir: /data/store
 
-swagger:
-  enable: true
-  application-name: ${spring.application.name}
-  application-version: 2.0
-  application-description: cmdb swagger 2.0
-  try-host: localhost:${server.port}
 
 
 

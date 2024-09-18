@@ -1,11 +1,12 @@
 package org.example.backend.common.utils;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.server.ServletServerHttpRequest;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -68,6 +69,14 @@ public class RequestUtil {
             result.put(key, URLDecoder.decode(value, "utf-8"));
         }
         return result;
+    }
+
+    public static String getUri(HttpServletRequest request){
+        String uri = request.getRequestURI();
+        List<String> list = CommaSplitUtils.toList(uri, "/");
+        list.removeIf(StringUtils::isNumeric); //去掉url中的数字参数
+        list.removeIf(c -> c.contains(","));// 去掉url中的逗号分隔参数
+        return StringUtils.join(list, "/");
     }
 
 }

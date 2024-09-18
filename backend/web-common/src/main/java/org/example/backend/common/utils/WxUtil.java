@@ -1,7 +1,7 @@
 package org.example.backend.common.utils;
 
 import cn.hutool.core.util.ObjectUtil;
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSONObject;
 import org.apache.commons.codec.binary.Base64;
 
 /**

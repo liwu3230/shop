@@ -15,7 +15,7 @@ public enum TokenType {
 
     WEB(0, "web"),
     APP(1, "app"),
-    API(2, "api");
+    ;
 
     private final int value;
     private final String label;

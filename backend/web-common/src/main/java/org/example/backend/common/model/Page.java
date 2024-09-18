@@ -14,6 +14,8 @@ public class Page<U> {
     private int pageSize;
     @ApiModelProperty(value = "数据总条数", example = "0")
     private long totalCount;
+    @ApiModelProperty(value = "数据总条数(兼容冗余)", example = "0")
+    private long count;
     @ApiModelProperty(value = "总页数", example = "0")
     private int totalPage;
 
@@ -25,6 +27,7 @@ public class Page<U> {
         this.list = list;
         this.pageSize = pageSize;
         this.totalCount = totalCount;
+        this.count = totalCount;
         this.totalPage = (int) Math.ceil((double) totalCount / pageSize);
     }
 
@@ -77,5 +80,13 @@ public class Page<U> {
 
     public void setTotalPage(int totalPage) {
         this.totalPage = totalPage;
+    }
+
+    public long getCount() {
+        return count;
+    }
+
+    public void setCount(long count) {
+        this.count = count;
     }
 }

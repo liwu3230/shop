@@ -18,7 +18,7 @@ public class Config {
     public static final String servicePackage = "org.example.backend.common.service.business";
     public static final String daoPackage = "org.example.backend.common.primary.base.dao";
     public static final String modelPackage = "org.example.backend.common.model";
-    public static final String paramPackage = "org.example.backend.common.model.param.business";
+    public static final String paramPackage = "org.example.backend.common.model.req";
     public static final String exportHeadPackage = "org.example.backend.common.excel.exporter.head";
     public static final String importHeadPackage = "org.example.backend.common.excel.importer.head";
     public static final String importListenerPackage = "org.example.backend.common.excel.importer.listener";
@@ -37,12 +37,6 @@ public class Config {
             "vm" + File.separator + "Controller.java.vm",
             "vm" + File.separator + "Service.java.vm",
             "vm" + File.separator + "Param.java.vm",
-            "vm" + File.separator + "Import.java.vm",
-            "vm" + File.separator + "ImportListener.java.vm",
-            "vm" + File.separator + "Export.java.vm",
-
-            "vm" + File.separator + "config.tsx.vm",
-            "vm" + File.separator + "index.tsx.vm",
     };
 
     /**

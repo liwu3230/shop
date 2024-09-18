@@ -18,7 +18,7 @@ import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.example.backend.common.utils.T;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import java.io.OutputStream;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;

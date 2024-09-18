@@ -1,31 +1,27 @@
 package org.example.backend.common.utils;
 
-import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import jakarta.annotation.Nullable;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.util.ReflectionUtils;
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
 
-import javax.annotation.Nullable;
 import javax.imageio.ImageIO;
-import javax.servlet.http.HttpServletRequest;
 import javax.xml.bind.DatatypeConverter;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.net.*;
 import java.nio.charset.Charset;
-import java.security.AccessController;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivilegedAction;
@@ -55,33 +51,7 @@ public class T {
     // DAY SECOND
     public static final long DAY = 24L * HOUR;
 
-    private final static Pattern IPV6_PATTERN = Pattern.compile("(^((([0-9A-Fa-f]{1,4}:){7}(([0-9A-Fa-f]{1,4}){1}|:))"
-            + "|(([0-9A-Fa-f]{1,4}:){6}((:[0-9A-Fa-f]{1,4}){1}|"
-            + "((22[0-3]|2[0-1][0-9]|[0-1][0-9][0-9]|"
-            + "([0-9]){1,2})([.](25[0-5]|2[0-4][0-9]|"
-            + "[0-1][0-9][0-9]|([0-9]){1,2})){3})|:))|"
-            + "(([0-9A-Fa-f]{1,4}:){5}((:[0-9A-Fa-f]{1,4}){1,2}|"
-            + ":((22[0-3]|2[0-1][0-9]|[0-1][0-9][0-9]|"
-            + "([0-9]){1,2})([.](25[0-5]|2[0-4][0-9]|"
-            + "[0-1][0-9][0-9]|([0-9]){1,2})){3})|:))|"
-            + "(([0-9A-Fa-f]{1,4}:){4}((:[0-9A-Fa-f]{1,4}){1,3}"
-            + "|:((22[0-3]|2[0-1][0-9]|[0-1][0-9][0-9]|"
-            + "([0-9]){1,2})([.](25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|"
-            + "([0-9]){1,2})){3})|:))|(([0-9A-Fa-f]{1,4}:){3}((:[0-9A-Fa-f]{1,4}){1,4}|"
-            + ":((22[0-3]|2[0-1][0-9]|[0-1][0-9][0-9]|"
-            + "([0-9]){1,2})([.](25[0-5]|2[0-4][0-9]|"
-            + "[0-1][0-9][0-9]|([0-9]){1,2})){3})|:))|"
-            + "(([0-9A-Fa-f]{1,4}:){2}((:[0-9A-Fa-f]{1,4}){1,5}|"
-            + ":((22[0-3]|2[0-1][0-9]|[0-1][0-9][0-9]|"
-            + "([0-9]){1,2})([.](25[0-5]|2[0-4][0-9]|"
-            + "[0-1][0-9][0-9]|([0-9]){1,2})){3})|:))"
-            + "|(([0-9A-Fa-f]{1,4}:){1}((:[0-9A-Fa-f]{1,4}){1,6}"
-            + "|:((22[0-3]|2[0-1][0-9]|[0-1][0-9][0-9]|"
-            + "([0-9]){1,2})([.](25[0-5]|2[0-4][0-9]|"
-            + "[0-1][0-9][0-9]|([0-9]){1,2})){3})|:))|"
-            + "(:((:[0-9A-Fa-f]{1,4}){1,7}|(:[fF]{4}){0,1}:((22[0-3]|2[0-1][0-9]|"
-            + "[0-1][0-9][0-9]|([0-9]){1,2})"
-            + "([.](25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|([0-9]){1,2})){3})|:)))$)");
+    private final static Pattern IPV6_PATTERN = Pattern.compile("(^((([0-9A-Fa-f]{1,4}:){7}(([0-9A-Fa-f]{1,4}){1}|:))" + "|(([0-9A-Fa-f]{1,4}:){6}((:[0-9A-Fa-f]{1,4}){1}|" + "((22[0-3]|2[0-1][0-9]|[0-1][0-9][0-9]|" + "([0-9]){1,2})([.](25[0-5]|2[0-4][0-9]|" + "[0-1][0-9][0-9]|([0-9]){1,2})){3})|:))|" + "(([0-9A-Fa-f]{1,4}:){5}((:[0-9A-Fa-f]{1,4}){1,2}|" + ":((22[0-3]|2[0-1][0-9]|[0-1][0-9][0-9]|" + "([0-9]){1,2})([.](25[0-5]|2[0-4][0-9]|" + "[0-1][0-9][0-9]|([0-9]){1,2})){3})|:))|" + "(([0-9A-Fa-f]{1,4}:){4}((:[0-9A-Fa-f]{1,4}){1,3}" + "|:((22[0-3]|2[0-1][0-9]|[0-1][0-9][0-9]|" + "([0-9]){1,2})([.](25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|" + "([0-9]){1,2})){3})|:))|(([0-9A-Fa-f]{1,4}:){3}((:[0-9A-Fa-f]{1,4}){1,4}|" + ":((22[0-3]|2[0-1][0-9]|[0-1][0-9][0-9]|" + "([0-9]){1,2})([.](25[0-5]|2[0-4][0-9]|" + "[0-1][0-9][0-9]|([0-9]){1,2})){3})|:))|" + "(([0-9A-Fa-f]{1,4}:){2}((:[0-9A-Fa-f]{1,4}){1,5}|" + ":((22[0-3]|2[0-1][0-9]|[0-1][0-9][0-9]|" + "([0-9]){1,2})([.](25[0-5]|2[0-4][0-9]|" + "[0-1][0-9][0-9]|([0-9]){1,2})){3})|:))" + "|(([0-9A-Fa-f]{1,4}:){1}((:[0-9A-Fa-f]{1,4}){1,6}" + "|:((22[0-3]|2[0-1][0-9]|[0-1][0-9][0-9]|" + "([0-9]){1,2})([.](25[0-5]|2[0-4][0-9]|" + "[0-1][0-9][0-9]|([0-9]){1,2})){3})|:))|" + "(:((:[0-9A-Fa-f]{1,4}){1,7}|(:[fF]{4}){0,1}:((22[0-3]|2[0-1][0-9]|" + "[0-1][0-9][0-9]|([0-9]){1,2})" + "([.](25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|([0-9]){1,2})){3})|:)))$)");
 
     protected T() {
     }
@@ -150,8 +120,7 @@ public class T {
             if (ch == '_') {
                 underlineBefore = true;
             } else if (underlineBefore) {
-                if (ch >= 'a' && ch <= 'z')
-                    ch -= 32;
+                if (ch >= 'a' && ch <= 'z') ch -= 32;
                 buffer.append(ch);
                 underlineBefore = false;
             } else {
@@ -268,8 +237,7 @@ public class T {
     }
 
     public static Date date(String v, String fm, Date def) {
-        if (v == null || v.length() == 0)
-            return def;
+        if (v == null || v.length() == 0) return def;
         try {
             return new SimpleDateFormat(fm).parse(v.trim());
         } catch (Exception e) {
@@ -425,9 +393,7 @@ public class T {
         Calendar calDateB = Calendar.getInstance();
         calDateB.setTime(dateB);
 
-        return calDateA.get(Calendar.YEAR) == calDateB.get(Calendar.YEAR)
-                && calDateA.get(Calendar.MONTH) == calDateB.get(Calendar.MONTH)
-                && calDateA.get(Calendar.DAY_OF_MONTH) == calDateB.get(Calendar.DAY_OF_MONTH);
+        return calDateA.get(Calendar.YEAR) == calDateB.get(Calendar.YEAR) && calDateA.get(Calendar.MONTH) == calDateB.get(Calendar.MONTH) && calDateA.get(Calendar.DAY_OF_MONTH) == calDateB.get(Calendar.DAY_OF_MONTH);
     }
 
     public static int getHour(Date date) {
@@ -437,8 +403,7 @@ public class T {
     }
 
     public static String format(Date date, String fmt) {
-        if (date == null)
-            return "";
+        if (date == null) return "";
         DateFormat formatter = new SimpleDateFormat(fmt);
         return formatter.format(date);
     }
@@ -560,15 +525,13 @@ public class T {
         if (T.isBlank(str) || T.isBlank(split)) {
             return new ArrayList<>();
         }
-        return Arrays.asList(str.split(split)).stream()
-                .filter(Objects::nonNull).filter(T::isNotBlank).collect(Collectors.toList());
+        return Arrays.asList(str.split(split)).stream().filter(Objects::nonNull).filter(T::isNotBlank).collect(Collectors.toList());
     }
 
     public static List<String> string2List(String str, String split) {
         List<String> list = null;
         String temp[] = string2Array(str, split);
-        if (temp == null)
-            return list;
+        if (temp == null) return list;
         list = new ArrayList<>(Arrays.asList(temp));
         return list;
     }
@@ -577,8 +540,7 @@ public class T {
 
         List<String> list = null;
         String temp[] = string2Array(str, split);
-        if (temp == null)
-            return list;
+        if (temp == null) return list;
         list = Arrays.asList(temp).stream().filter(T::isNotBlank).collect(Collectors.toList());
         return list;
     }
@@ -587,8 +549,7 @@ public class T {
 
         Set<String> set = null;
         String temp[] = string2Array(str, split);
-        if (temp == null)
-            return set;
+        if (temp == null) return set;
         set = Arrays.asList(temp).stream().filter(T::isNotBlank).collect(Collectors.toSet());
         return set;
     }
@@ -772,8 +733,7 @@ public class T {
     }
 
     public static String encodeURL(String s) {
-        if (s == null)
-            return null;
+        if (s == null) return null;
         try {
             return URLEncoder.encode(s, "UTF-8");
         } catch (UnsupportedEncodingException e) {
@@ -782,8 +742,7 @@ public class T {
     }
 
     public static String decodeURL(String s) {
-        if (s == null)
-            return null;
+        if (s == null) return null;
 
         try {
             return URLDecoder.decode(s, "UTF-8");
@@ -840,15 +799,15 @@ public class T {
     }
 
     public static Object jsonToObject(String json, Class obj) {
-        return JSON.parseObject(json, obj);
+        return JSONObject.parseObject(json, obj);
     }
 
     public static <V> V jsonToObject(String json, Type obj) {
-        return JSON.parseObject(json, obj);
+        return JSONObject.parseObject(json, obj);
     }
 
     public static <V> V jsonToObjectV(String json, Class<V> obj) {
-        return JSON.parseObject(json, obj);
+        return JSONObject.parseObject(json, obj);
     }
 
     public static String getMd5(String plainText) {
@@ -861,10 +820,8 @@ public class T {
             StringBuffer buf = new StringBuffer("");
             for (int offset = 0; offset < b.length; offset++) {
                 i = b[offset];
-                if (i < 0)
-                    i += 256;
-                if (i < 16)
-                    buf.append("0");
+                if (i < 0) i += 256;
+                if (i < 16) buf.append("0");
                 buf.append(Integer.toHexString(i));
             }
             result = buf.toString();// 32位的加密
@@ -1084,10 +1041,7 @@ public class T {
     // 根据Unicode编码完美的判断中文汉字和符号
     private static boolean isChinese(char c) {
         Character.UnicodeBlock ub = Character.UnicodeBlock.of(c);
-        if (ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS || ub == Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS
-                || ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A || ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B
-                || ub == Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION || ub == Character.UnicodeBlock.HALFWIDTH_AND_FULLWIDTH_FORMS
-                || ub == Character.UnicodeBlock.GENERAL_PUNCTUATION) {
+        if (ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS || ub == Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS || ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A || ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B || ub == Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION || ub == Character.UnicodeBlock.HALFWIDTH_AND_FULLWIDTH_FORMS || ub == Character.UnicodeBlock.GENERAL_PUNCTUATION) {
             return true;
         }
         return false;
@@ -1106,14 +1060,12 @@ public class T {
     }
 
     public static String trim(String str) {
-        if (str == null)
-            return null;
+        if (str == null) return null;
         return str.trim();
     }
 
     public static String trim(String str, String def) {
-        if (str == null)
-            return def;
+        if (str == null) return def;
 
         return str.trim();
     }
@@ -1128,28 +1080,24 @@ public class T {
     }
 
     public static Double doubleTrim(Double d) {
-        if (Objects.isNull(d))
-            return null;
+        if (Objects.isNull(d)) return null;
         return doubleTrim(d.doubleValue());
     }
 
     public static String doubleFormat2(Double d) {
-        if (d == null)
-            return null;
+        if (d == null) return null;
         DecimalFormat df = new DecimalFormat("#.##");
         return df.format(d);
     }
 
     public static String doubleFormat3(Double d) {
-        if (d == null)
-            return null;
+        if (d == null) return null;
         DecimalFormat df = new DecimalFormat("#.###");
         return df.format(d);
     }
 
     public static String doubleFormat1(Double d) {
-        if (d == null)
-            return null;
+        if (d == null) return null;
         DecimalFormat df = new DecimalFormat("#.#");
         return df.format(d);
     }
@@ -1165,18 +1113,15 @@ public class T {
     }
 
     public static void requireTrue(boolean val, String message) {
-        if (!val)
-            throw new RuntimeException(message);
+        if (!val) throw new RuntimeException(message);
     }
 
     public static void requireTrue(boolean val, Supplier<String> messageSupplier) {
-        if (!val)
-            throw new RuntimeException(messageSupplier.get());
+        if (!val) throw new RuntimeException(messageSupplier.get());
     }
 
     public static void requireFalse(boolean val, String message) {
-        if (val)
-            throw new RuntimeException(message);
+        if (val) throw new RuntimeException(message);
     }
 
     public static String getDayRange(Date date1, Date date2) {
@@ -1207,7 +1152,7 @@ public class T {
      * @return String
      */
     public static String encodeBase64Opentsdb(byte[] bstr) {
-        String s = new BASE64Encoder().encode(bstr);
+        String s = Base64.getEncoder().encodeToString(bstr);
         try {
             if (s.contains("+")) {
                 s = s.replaceAll("\\+", ".");
@@ -1229,15 +1174,10 @@ public class T {
      */
     public static byte[] decodeBase64Opentsdb(String str) {
         byte[] bt = null;
-        try {
-            BASE64Decoder decoder = new BASE64Decoder();
-            str = str.replaceAll("\\.", "+");
-            str = str.replaceAll("_", "=");
-            bt = decoder.decodeBuffer(str);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
+        str = str.replaceAll("\\.", "+");
+        str = str.replaceAll("_", "=");
+        bt = Base64.getDecoder().decode(str);
         return bt;
     }
 
@@ -1254,20 +1194,17 @@ public class T {
     }
 
     public static double defaultValue(Double v, double def) {
-        if (v != null)
-            return v;
+        if (v != null) return v;
         return def;
     }
 
     public static int defaultValue(Integer v, int def) {
-        if (v != null)
-            return v;
+        if (v != null) return v;
         return def;
     }
 
     public static int defaultValue(Double v, int def) {
-        if (v != null)
-            return v.intValue();
+        if (v != null) return v.intValue();
         return def;
     }
 
@@ -1278,8 +1215,7 @@ public class T {
         }
 
         for (String e : vals)
-            if (T.isNotBlank(e))
-                return e;
+            if (T.isNotBlank(e)) return e;
         return null;
     }
 
@@ -1407,17 +1343,11 @@ public class T {
     }
 
     public static String encodeBase64(byte[] bstr) {
-        return new BASE64Encoder().encode(bstr);
+        return Base64.getEncoder().encodeToString(bstr);
     }
 
     public static byte[] decodeBase64(String bstr) {
-        try {
-            return new BASE64Decoder().decodeBuffer(bstr);
-        } catch (IOException e) {
-            e.printStackTrace();
-            log.error("decodeBase64 error bstr={}", bstr, e);
-        }
-        return null;
+        return Base64.getDecoder().decode(bstr);
     }
 
     public static boolean GT(Float v, int val) {
@@ -2067,8 +1997,7 @@ public class T {
     }
 
     public static List<Integer> add(List<Integer> sum, List<Integer> data) {
-        int size = Math.max(Optional.ofNullable(sum).map(List::size).orElse(0),
-                Optional.ofNullable(data).map(List::size).orElse(0));
+        int size = Math.max(Optional.ofNullable(sum).map(List::size).orElse(0), Optional.ofNullable(data).map(List::size).orElse(0));
         List<Integer> list = new ArrayList<>(size);
         for (int i = 0; i < size; i++) {
             int index = i;
@@ -2616,46 +2545,6 @@ public class T {
         BeanUtils.copyProperties(oldE, newE);
     }
 
-    public static Map<String, Object> beanField2Map(Object obj) {
-        return beanField2Map(obj, false);
-    }
-
-    public static Map<String, Object> beanField2Map(Object obj, boolean containsNullKey) {
-        if (obj == null) {
-            return null;
-        }
-        if (obj instanceof Map) {
-            return (Map<String, Object>) obj;
-        }
-        try {
-            Map<String, Object> result = new HashMap();
-            Class<?> type = obj.getClass();
-            SetAccessibleAction setAccessibleAction = new SetAccessibleAction();
-            while (type != null && !type.getName().equals(Object.class.getName())) {
-
-                Field[] fields = type.getDeclaredFields();
-                for (int i = 0; i < fields.length; ++i) {
-                    Field field = fields[i];
-                    int modifiers = field.getModifiers();
-                    if (!Modifier.isFinal(modifiers) && !Modifier.isStatic(modifiers)) {
-                        setAccessibleAction.setField(field);
-                        AccessController.doPrivileged(setAccessibleAction);
-                        Object fieldValue = field.get(obj);
-                        String propertyKey = field.getName();
-                        if ((fieldValue != null || containsNullKey) && !result.containsKey(propertyKey)) {
-                            result.put(propertyKey, fieldValue);
-                        }
-                    }
-                }
-                type = type.getSuperclass();
-            }
-            return result;
-        } catch (Throwable e) {
-            throw new RuntimeException(e);
-        }
-
-    }
-
     public static BigDecimal divide(String v, int rate, int scale) {
         return new BigDecimal(v).divide(new BigDecimal(rate), scale, BigDecimal.ROUND_HALF_UP);
     }
@@ -2731,19 +2620,6 @@ public class T {
         return value / div;
     }
 
-    public static JSON toJson(String json) {
-        if (T.isBlank(json)) {
-            return null;
-        }
-        if (JSON.isValidArray(json)) {
-            return JSON.parseArray(json);
-        }
-        if (JSON.isValidObject(json)) {
-            return JSON.parseObject(json);
-        }
-        return null;
-    }
-
     public static Object toNumber(Double d) {
         String s = d.toString();
         if (s.matches(".*\\.0+")) {
@@ -2796,11 +2672,7 @@ public class T {
     }
 
     public static Map<String, Object> objectToMap(Object args) {
-        return Arrays.stream(BeanUtils.getPropertyDescriptors(args.getClass()))
-                .filter(pd -> !"class".equals(pd.getName()))
-                .collect(HashMap::new,
-                        (map, pd) -> map.put(pd.getName(), ReflectionUtils.invokeMethod(pd.getReadMethod(), args)),
-                        HashMap::putAll);
+        return Arrays.stream(BeanUtils.getPropertyDescriptors(args.getClass())).filter(pd -> !"class".equals(pd.getName())).collect(HashMap::new, (map, pd) -> map.put(pd.getName(), ReflectionUtils.invokeMethod(pd.getReadMethod(), args)), HashMap::putAll);
     }
 
     /**
@@ -2826,8 +2698,7 @@ public class T {
      * @return
      * @throws IOException
      */
-    public static byte[] scaleImage(InputStream inputStream, String imgType, Set<Integer> defaultColors,
-                                    int spanX, int spanY, int minWidth, int minHeight) throws IOException {
+    public static byte[] scaleImage(InputStream inputStream, String imgType, Set<Integer> defaultColors, int spanX, int spanY, int minWidth, int minHeight) throws IOException {
         BufferedImage bufferedImage = ImageIO.read(inputStream);
         int x0 = 0;
         {
@@ -3028,23 +2899,21 @@ public class T {
         if (obj == null) {
             return null;
         }
-        return JSON.toJSONString(obj);
+        return JSONObject.toJSONString(obj);
     }
 
     public static String toJsonString(Object obj, String def) {
         if (obj == null) {
             return def;
         }
-        return JSON.toJSONString(obj);
+        return JSONObject.toJSONString(obj);
     }
 
-    public static <E> List<E> pageList(Supplier<Long> queryCountSupp,
-                                       BiFunction<Integer, Integer, List<E>> queryListFunc) {
+    public static <E> List<E> pageList(Supplier<Long> queryCountSupp, BiFunction<Integer, Integer, List<E>> queryListFunc) {
         return pageList(1000, queryCountSupp, queryListFunc);
     }
 
-    public static <E> List<E> pageList(final int pageSize, Supplier<Long> queryCountSupp,
-                                       BiFunction<Integer, Integer, List<E>> queryListFunc) {
+    public static <E> List<E> pageList(final int pageSize, Supplier<Long> queryCountSupp, BiFunction<Integer, Integer, List<E>> queryListFunc) {
         long totalCount = queryCountSupp.get();
         int pageTotal = T.computePages((int) totalCount, pageSize);
         if (pageTotal <= 0) {
@@ -3059,20 +2928,17 @@ public class T {
         return dataList;
     }
 
-    public static <E> List<E> parallelPageList(Supplier<Long> queryCountSupp,
-                                               BiFunction<Integer, Integer, List<E>> queryListFunc) throws ExecutionException, InterruptedException {
+    public static <E> List<E> parallelPageList(Supplier<Long> queryCountSupp, BiFunction<Integer, Integer, List<E>> queryListFunc) throws ExecutionException, InterruptedException {
         return parallelPageList(1000, queryCountSupp, queryListFunc);
     }
 
-    public static <E> List<E> parallelPageList(final int pageSize, Supplier<Long> queryCountSupp,
-                                               BiFunction<Integer, Integer, List<E>> queryListFunc) throws ExecutionException, InterruptedException {
+    public static <E> List<E> parallelPageList(final int pageSize, Supplier<Long> queryCountSupp, BiFunction<Integer, Integer, List<E>> queryListFunc) throws ExecutionException, InterruptedException {
         long totalCount = queryCountSupp.get();
         int pageTotal = T.computePages((int) totalCount, pageSize);
         if (pageTotal <= 0) {
             return Collections.emptyList();
         }
-        ExecutorService executor = new ThreadPoolExecutor(3, 3, 0L, TimeUnit.MILLISECONDS,
-                new LinkedBlockingQueue<>(), new ThreadFactoryBuilder().setDaemon(false).setNameFormat("parallel-page-list-pool-%d").build());
+        ExecutorService executor = new ThreadPoolExecutor(3, 3, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>(), new ThreadFactoryBuilder().setDaemon(false).setNameFormat("parallel-page-list-pool-%d").build());
         List<CompletableFuture<List<E>>> futureList = new ArrayList<>();
         for (int page = 1; page <= pageTotal; page++) {
             int finalPage = page;

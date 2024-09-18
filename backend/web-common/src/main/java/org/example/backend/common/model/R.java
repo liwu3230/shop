@@ -1,6 +1,7 @@
 package org.example.backend.common.model;
 
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import com.google.common.reflect.TypeParameter;
 import com.google.common.reflect.TypeToken;
 import org.apache.commons.lang3.StringUtils;
@@ -13,6 +14,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class R extends HashMap<String, Object> {
+
     public static final int CODE_OK = 0;
     public static final int CODE_ERROR_NEG1 = -1;
     public static final int CODE_ERROR_1 = 1;
@@ -78,6 +80,13 @@ public class R extends HashMap<String, Object> {
     public static R data(Object data) {
         R r = new R();
         r.put(DATA, data);
+        return r;
+    }
+
+    public static R data(Object data,String msg) {
+        R r = new R();
+        r.put(DATA, data);
+        r.put(MSG, msg);
         return r;
     }
 
@@ -224,7 +233,7 @@ public class R extends HashMap<String, Object> {
 
     public <T> List<T> getDataForList(Class<T> clazz) {
         Object object = get(DATA);
-        return JSONObject.parseArray(JSONObject.toJSONString(object), clazz);
+        return JSON.parseArray(JSONObject.toJSONString(object), clazz);
     }
 
     public R removeSuccessField() {
