@@ -2,7 +2,7 @@ package org.example.backend.common.config;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
 import lombok.extern.slf4j.Slf4j;
-import org.example.backend.common.utils.CacheNames;
+import org.example.backend.common.util.CacheNames;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;

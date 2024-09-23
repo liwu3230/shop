@@ -1,0 +1,110 @@
+.container {
+  display: flex;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  justify-content: center; /* 水平居中 */
+  align-items: center;
+  height: 100vh;
+  overflow: auto;
+  //background: #f0f2f5;
+  //background-image: url('../../../public/bg.jpg');
+  background-image: url('../../../public/bg2.png');
+}
+
+//取消输入框回填的蓝色背景色
+input:-internal-autofill-previewed,
+input:-internal-autofill-selected {
+  -webkit-text-fill-color: #2a2d33;
+  transition: background-color 5000s ease-out 0.5s;
+}
+
+.site-form-item-icon {
+  margin-left: 8px;
+  color: rgba(0, 0, 0, 0.2);
+  font-size: 24px;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: color 0.3s;
+
+  &:hover {
+    color: @primary-color;
+  }
+}
+
+.form {
+  z-index: 9999 !important;
+  margin-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 水平居中 */
+  align-items: center;
+  width: 500px;
+  height: 350px;
+  background: #fff;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+
+  button {
+    width: 100%;
+  }
+
+  p {
+    color: rgb(204, 204, 204);
+    text-align: center;
+    margin-top: 16px;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+}
+
+.form_radius {
+  border-radius: 6px !important;
+}
+
+.logo {
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 40px;
+    margin-right: 8px;
+  }
+
+  span {
+    vertical-align: text-bottom;
+    font-size: 22px;
+    text-transform: uppercase;
+    display: inline-block;
+    font-weight: 600;
+    color: @primary-color;
+
+    .text-gradient {
+      background-image: -webkit-gradient(linear,
+      37.219838% 34.532506%,
+      36.425669% 93.178216%,
+      from(#29cdff),
+      to(#0a60ff),
+      color-stop(0.37, #148eff));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+}
+
+.ant-spin-container,
+.ant-spin-nested-loading {
+  height: 100%;
+}
+
+.footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}

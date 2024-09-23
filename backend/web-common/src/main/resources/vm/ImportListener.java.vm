@@ -1,0 +1,25 @@
+package ${importListenerPackage};
+
+import org.example.backend.common.excel.importer.AbstractFileHandler;
+import org.example.backend.common.excel.importer.head.${clazzName}Import;
+import ${paramPackage}.${clazzName}Param;
+import ${servicePackage}.${clazzName}Service;
+import org.example.backend.common.util.SpringBeanUtil;
+import org.springframework.beans.BeanUtils;
+
+public class ${clazzName}ImportListener extends AbstractFileHandler<${clazzName}Import> {
+
+    private ${clazzName}Service ${className}Service;
+
+    public ${clazzName}ImportListener() {
+            ${className}Service = SpringBeanUtil.getBean(${clazzName}Service.class);
+    }
+
+    @Override
+    public void insert(${clazzName}Import data) {
+        ${clazzName}Param param = new ${clazzName}Param();
+        BeanUtils.copyProperties(data, param);
+
+        ${className}Service.saveOrUpdate(param);
+    }
+}

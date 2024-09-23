@@ -1,7 +1,7 @@
 server:
-  port: 7777
+  port: 8585
   servlet:
-    context-path: /
+    context-path: /system-web
 
 spring:
   profiles:
@@ -75,17 +75,17 @@ spring:
       stat-view-servlet:
         enabled: false
 
-  redis:
-    database: 0
-    host: 119.91.227.31
-    port: 16379
-    password: yy123456
-    timeout: 6000
-    lettuce:
-      pool:
-        max-active: 100 #连接池最大连接数（使用负值表示没有限制）
-        max-idle: 10 #连接池中的最大空闲连接
-        max-wait: 60000 #连接池最大阻塞等待时间（使用负值表示没有限制）
+#  redis:
+#    database: 0
+#    host: 119.91.227.31
+#    port: 16379
+#    password: yy123456
+#    timeout: 6000
+#    lettuce:
+#      pool:
+#        max-active: 100 #连接池最大连接数（使用负值表示没有限制）
+#        max-idle: 10 #连接池中的最大空闲连接
+#        max-wait: 60000 #连接池最大阻塞等待时间（使用负值表示没有限制）
 
 #mybatis:
 #  configuration:
@@ -93,6 +93,9 @@ spring:
 
 security:
   ignoreUrls:
+    - /common/login
+    - /common/register
+    - /common/logout
     - /actuator/health
     - /druid/**
     - /swagger-ui.html
@@ -103,18 +106,13 @@ security:
     - /**/*.html
     - /**/*.css
     - /**/*.js
-    - /profile/**
-    - /common/download**
-    - /common/download/resource**
-    - /api/admin/login
-    - /api/admin/getLoginPic
-    - /api/admin/upload/image
-    - /api/admin/upload/file
-    - /api/admin/payment/callback/**
-    - /api/public/**
+
+
 
 storage:
-  dir: /data/store
+  platform: local  #选择对象存储服务 local/oss
+  local-dir: /data/store
+
 
 
 

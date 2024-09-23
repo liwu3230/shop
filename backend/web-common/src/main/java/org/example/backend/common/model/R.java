@@ -5,7 +5,7 @@ import com.alibaba.fastjson2.JSONObject;
 import com.google.common.reflect.TypeParameter;
 import com.google.common.reflect.TypeToken;
 import org.apache.commons.lang3.StringUtils;
-import org.example.backend.common.utils.T;
+import org.example.backend.common.util.T;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
@@ -15,12 +15,12 @@ import java.util.Objects;
 
 public class R extends HashMap<String, Object> {
 
-    public static final int CODE_OK = 200;
+    public static final int CODE_OK = 0;
     public static final int CODE_ERROR_NEG1 = -1;
     public static final int CODE_ERROR_1 = 1;
     public static final int CODE_ERROR_500 = 500;
     public static final int CODE_WARN = -2;
-    public static final String CODE = "status";
+    public static final String CODE = "code";
     public static final String MSG = "msg";
     public static final String DATA = "data";
     public static final String PAGE = "page";

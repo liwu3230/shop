@@ -54,107 +54,119 @@
                              targetProject="backend\web-common\src\main\java"
                              type="ANNOTATEDMAPPER"/>
 
-        <table tableName="eb_user" domainObjectName="User" mapperName="UserDao"
+<!--        <table tableName="eb_user" domainObjectName="User" mapperName="UserDao"-->
+<!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+<!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+<!--            <generatedKey column="uid" sqlStatement="JDBC"/>-->
+<!--        </table>-->
+
+        <!--        <table tableName="eb_system_admin" domainObjectName="SystemAdmin" mapperName="SystemAdminDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--        </table>-->
+
+        <!--        <table tableName="eb_system_attachment" domainObjectName="SystemAttachment" mapperName="SystemAttachmentDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--            <generatedKey column="att_id" sqlStatement="JDBC"/>-->
+        <!--        </table>-->
+
+        <!--        <table tableName="eb_system_attachment_category" domainObjectName="SystemAttachmentCategory" mapperName="SystemAttachmentCategoryDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--        </table>-->
+
+        <!--        <table tableName="eb_system_city" domainObjectName="SystemCity" mapperName="SystemCityDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--        </table>-->
+
+        <!--        <table tableName="eb_system_config" domainObjectName="SystemConfig" mapperName="SystemConfigDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--        </table>-->
+
+        <!--        <table tableName="eb_system_config_tab" domainObjectName="SystemConfigTab" mapperName="SystemConfigTabDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--        </table>-->
+
+        <!--        <table tableName="eb_system_log" domainObjectName="SystemLog" mapperName="SystemLogDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--        </table>-->
+
+        <!--        <table tableName="eb_system_menus" domainObjectName="SystemMenus" mapperName="SystemMenusDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--        </table>-->
+
+        <!--        <table tableName="eb_system_notice_admin" domainObjectName="SystemNoticeAdmin" mapperName="SystemNoticeAdminDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--        </table>-->
+
+        <!--        <table tableName="eb_system_notification" domainObjectName="SystemNotification" mapperName="SystemNotificationDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--        </table>-->
+
+        <!--        <table tableName="eb_system_role" domainObjectName="SystemRole" mapperName="SystemRoleDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--        </table>-->
+
+        <!--        <table tableName="eb_system_sign_reward" domainObjectName="SystemSignReward" mapperName="SystemSignRewardDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--        </table>-->
+
+        <!--        <table tableName="eb_system_storage" domainObjectName="SystemStorage" mapperName="SystemStorageDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--        </table>-->
+
+        <!--        <table tableName="eb_system_store" domainObjectName="SystemStore" mapperName="SystemStoreDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--        </table>-->
+
+        <!--        <table tableName="eb_system_store_staff" domainObjectName="SystemStoreStaff" mapperName="SystemStoreStaffDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--        </table>-->
+
+        <!--        <table tableName="eb_system_timer" domainObjectName="SystemTimer" mapperName="SystemTimerDao"-->
+        <!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--        </table>-->
+
+        <table tableName="sys_attachment_category" domainObjectName="SysAttachmentCategory" mapperName="SysAttachmentCategoryDao"
                enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
                enableSelectByExample="true" selectByExampleQueryId="true">
-            <generatedKey column="uid" sqlStatement="JDBC"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
         </table>
 
-<!--        <table tableName="eb_system_admin" domainObjectName="SystemAdmin" mapperName="SystemAdminDao"-->
-<!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
-<!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
-<!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
-<!--        </table>-->
-
-<!--        <table tableName="eb_system_attachment" domainObjectName="SystemAttachment" mapperName="SystemAttachmentDao"-->
-<!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
-<!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
-<!--            <generatedKey column="att_id" sqlStatement="JDBC"/>-->
-<!--        </table>-->
-
-<!--        <table tableName="eb_system_attachment_category" domainObjectName="SystemAttachmentCategory" mapperName="SystemAttachmentCategoryDao"-->
-<!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
-<!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
-<!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
-<!--        </table>-->
-
-<!--        <table tableName="eb_system_city" domainObjectName="SystemCity" mapperName="SystemCityDao"-->
-<!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
-<!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
-<!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
-<!--        </table>-->
-
-<!--        <table tableName="eb_system_config" domainObjectName="SystemConfig" mapperName="SystemConfigDao"-->
-<!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
-<!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
-<!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
-<!--        </table>-->
-
-<!--        <table tableName="eb_system_config_tab" domainObjectName="SystemConfigTab" mapperName="SystemConfigTabDao"-->
-<!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
-<!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
-<!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
-<!--        </table>-->
-
-<!--        <table tableName="eb_system_log" domainObjectName="SystemLog" mapperName="SystemLogDao"-->
-<!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
-<!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
-<!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
-<!--        </table>-->
-
-<!--        <table tableName="eb_system_menus" domainObjectName="SystemMenus" mapperName="SystemMenusDao"-->
-<!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
-<!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
-<!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
-<!--        </table>-->
-
-<!--        <table tableName="eb_system_notice_admin" domainObjectName="SystemNoticeAdmin" mapperName="SystemNoticeAdminDao"-->
-<!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
-<!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
-<!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
-<!--        </table>-->
-
-<!--        <table tableName="eb_system_notification" domainObjectName="SystemNotification" mapperName="SystemNotificationDao"-->
-<!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
-<!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
-<!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
-<!--        </table>-->
-
-<!--        <table tableName="eb_system_role" domainObjectName="SystemRole" mapperName="SystemRoleDao"-->
-<!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
-<!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
-<!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
-<!--        </table>-->
-
-<!--        <table tableName="eb_system_sign_reward" domainObjectName="SystemSignReward" mapperName="SystemSignRewardDao"-->
-<!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
-<!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
-<!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
-<!--        </table>-->
-
-<!--        <table tableName="eb_system_storage" domainObjectName="SystemStorage" mapperName="SystemStorageDao"-->
-<!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
-<!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
-<!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
-<!--        </table>-->
-
-<!--        <table tableName="eb_system_store" domainObjectName="SystemStore" mapperName="SystemStoreDao"-->
-<!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
-<!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
-<!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
-<!--        </table>-->
-
-<!--        <table tableName="eb_system_store_staff" domainObjectName="SystemStoreStaff" mapperName="SystemStoreStaffDao"-->
-<!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
-<!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
-<!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
-<!--        </table>-->
-
-<!--        <table tableName="eb_system_timer" domainObjectName="SystemTimer" mapperName="SystemTimerDao"-->
-<!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
-<!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
-<!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
-<!--        </table>-->
+        <table tableName="sys_attachment" domainObjectName="SysAttachment" mapperName="SysAttachmentDao"
+               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" selectByExampleQueryId="true">
+            <generatedKey column="att_id" sqlStatement="JDBC"/>
+        </table>
 
 
     </context>

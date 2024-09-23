@@ -2,7 +2,7 @@ package org.example.backend.web.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.example.backend.common.model.R;
-import org.example.backend.common.utils.T;
+import org.example.backend.common.util.T;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;

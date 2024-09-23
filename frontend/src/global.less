@@ -1,0 +1,206 @@
+// 覆盖ant样式
+:root {
+  --Table-fontSize: 14px !important;
+  --Table-color: #355373 !important;
+  --Table-onHover-color: #355373 !important;
+  --button-size-sm-fontSize: 14px !important;
+  --TableCell-height: 2.75rem !important;
+  --Form-item-fontColor: rgba(0, 0, 0, 0.85) !important;
+
+  --IconPicker-sugItem-height: 2.25rem;
+  --IconPicker-sugItem-lineHeight: 2.25rem;
+  --IconPicker-sugItem-width: 2.25rem;
+  --IconPicker-tab-height: 2.375rem;
+  --IconPicker-tab-lineHeight: 2.375rem;
+  --Form-select-placeholderColor: #bfbfbf !important;
+  //--Form-item-color: var(--colors-neutral-text-2);
+}
+
+.ant-cmdb-layout {
+  background: #f0f2f5 !important;
+
+  // .ant-cmdb-layout-sider {
+  //   background: #fff !important;
+  // }
+}
+
+.none-border-table {
+  .antd-Crud-body {
+    border: none;
+  }
+}
+
+.ant-cmdb-message {
+  z-index: 99999;
+}
+
+.ant-cmdb-table-content .ant-cmdb-table-thead > tr > th,
+.antd-Table-table > thead > tr > th {
+  background: #dde6f0 !important;
+  color: #355373;
+}
+
+.antd-Table-table > thead > tr > th:not(:last-child) {
+  border: none;
+}
+
+.ant-cmdb-menu-submenu .ant-cmdb-menu-sub.ant-cmdb-menu-inline {
+  background: #fff;
+}
+
+.antd-Page {
+  background-color: #fff;
+}
+
+.ant-cmdb-table .ant-cmdb-table-thead > tr > th,
+.ant-cmdb-table .ant-cmdb-table-tbody > tr > td {
+  padding: var(--TableCell-paddingY) var(--TableCell-paddingX);
+}
+
+.mx-0\.75 {
+  margin: 0.1875rem;
+}
+
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+// margin/padding util
+@distance: 0, 2, 5, 10, 12, 15, 20, 25;
+@positions: top, right, bottom, left;
+
+each(@distance, {
+  each(@positions, .(@position) {
+    .margin-@{position}-@{value} {
+      margin-@{position}: @value * 1px;
+    }
+
+    .padding-@{position}-@{value} {
+      padding-@{position}: @value * 1px;
+    }
+  });
+
+  .margin-@{value} {
+    margin: @value * 1px;
+  }
+
+  .padding-@{value} {
+    padding: @value * 1px;
+  }
+});
+
+@set: {
+  // success/成功 样式
+  success: #389e0d, #52c41a, #73d13d;
+  // warning/警告色 样式
+  warning: #fa8c16, #ffa940, #ffc069;
+  // gold/金色 样式
+  blue: #1890ff, #4ca7fb, #9dc9f3;
+  // red/红色 样式
+  red: #f5222d, #ff4d4f, #ff7875;
+  // grey/灰色 样式
+  grey: #8c8c8c, #bfbfbf, #d9d9d9;
+};
+
+each(@set, {
+  .color-@{key} {
+    color: extract(@value, 1);
+  }
+
+  .bg-@{key} {
+    background: extract(@value, 1);
+  }
+})
+
+// 覆盖滚动条样式
+body {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    opacity: 0;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: #cdcdcd;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a6a6a6;
+  }
+
+  // amis样式
+  // spinner-bg
+  //--Spinner-bg: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMzAnIGhlaWdodD0nMzAnIHZpZXdCb3g9JzAgMCAzOCAzOCcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48ZGVmcz48bGluZWFyR3JhZGllbnQgeDE9JzguMDQyJScgeTE9JzAlJyB4Mj0nNjUuNjgyJScgeTI9JzIzLjg2NSUnIGlkPSdhJz48c3RvcCBzdG9wLWNvbG9yPScjNDI5OEYwJyBzdG9wLW9wYWNpdHk9JzAnIG9mZnNldD0nMCUnLz48c3RvcCBzdG9wLWNvbG9yPScjNDI5OEYwJyBzdG9wLW9wYWNpdHk9Jy42MzEnIG9mZnNldD0nNjMuMTQ2JScvPjxzdG9wIHN0b3AtY29sb3I9JyM0Mjk4RjAnIG9mZnNldD0nMTAwJScvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxnIGZpbGw9J25vbmUnIGZpbGwtcnVsZT0nZXZlbm9kZCc+PGcgdHJhbnNmb3JtPSd0cmFuc2xhdGUoMSAxKSc+PHBhdGggZD0nTTM2IDE4YzAtOS45NC04LjA2LTE4LTE4LTE4JyBpZD0nT3ZhbC0yJyBzdHJva2U9J3VybCgjYSknIHN0cm9rZS13aWR0aD0nMic+PGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0ndHJhbnNmb3JtJyB0eXBlPSdyb3RhdGUnIGZyb209JzAgMTggMTgnIHRvPSczNjAgMTggMTgnIGR1cj0nMC45cycgcmVwZWF0Q291bnQ9J2luZGVmaW5pdGUnIC8+PC9wYXRoPjxjaXJjbGUgZmlsbD0nIzQyOThGMCcgY3g9JzM2JyBjeT0nMTgnIHI9JzEnPjxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9J3RyYW5zZm9ybScgdHlwZT0ncm90YXRlJyBmcm9tPScwIDE4IDE4JyB0bz0nMzYwIDE4IDE4JyBkdXI9JzAuOXMnIHJlcGVhdENvdW50PSdpbmRlZmluaXRlJyAvPjwvY2lyY2xlPjwvZz48L2c+PC9zdmc+');
+
+}
+
+// toast
+.cxd-Toast-body {
+  word-break: break-word;
+}
+
+// 弹窗最大高度
+.dialog-max-h {
+  max-height: calc(100vh - 200px);
+}
+
+// crud中form样式设置
+.form-with-crud {
+  .antd-Panel-body {
+    padding-bottom: 0;
+  }
+
+  .antd-Form-group {
+    margin-bottom: 0;
+  }
+
+  .antd-Form-group--hor > div > .antd-Form-item {
+    margin-bottom: var(--Form-item-gap);
+  }
+
+  .antd-ButtonGroup {
+    position: relative;
+    padding: 8px 0;
+
+    &::after {
+      position: absolute;
+      content: '';
+      top: -1px;
+      left: -0.75rem;
+      width: calc(100% + 1.5rem);
+      height: 1px;
+      background-color: var(--Panel-footerBorderColor);
+    }
+  }
+}
+
+.antd-Property > table > thead > tr > th {
+  border: none;
+  background: #fff;
+  border-bottom: 1px solid var(--borderColor);
+}
+
+.antd-Property > table > tbody > tr > th {
+  color: #355373;
+}
+
+// 设置条件组合的值组件宽度（升级amis版本后可移除）
+.antd-CBValue {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0.1875rem;
+  flex: 1;
+  min-width: 20rem;
+}
+
+.antd-CBValue > * {
+  width: 100%
+}

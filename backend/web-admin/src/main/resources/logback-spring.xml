@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
     <contextName>logback</contextName>
-    <property name="logPath" value="/data/weblog/java/admin"/>
+    <property name="logPath" value="/data/weblog/java/backend"/>
     <!--<springProperty scope="context" name="logPath" source="logBack.logPath"-->
     <!--defaultValue="/data/weblog/java/backend"/>-->
     <!--输出到控制台-->

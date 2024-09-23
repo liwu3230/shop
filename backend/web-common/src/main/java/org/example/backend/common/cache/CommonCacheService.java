@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import lombok.extern.slf4j.Slf4j;
-import org.example.backend.common.utils.T;
+import org.example.backend.common.util.T;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;

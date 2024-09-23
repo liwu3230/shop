@@ -1,0 +1,20 @@
+.resizer {
+  flex: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 12px;
+  height: 100%;
+  user-select: none;
+  cursor: col-resize;
+  background-color: #f0f2f5;
+  &:hover {
+    //background-color: #a6a6a6;
+    background-color: darken(#f0f2f5, 5%);
+  }
+}
+.resizer-btn {
+  cursor: pointer;
+}
+.resizer-clip {
+  pointer-events: none;
+}

@@ -5,7 +5,7 @@ import com.alibaba.excel.enums.CellDataTypeEnum;
 import com.alibaba.excel.metadata.CellData;
 import com.alibaba.excel.metadata.GlobalConfiguration;
 import com.alibaba.excel.metadata.property.ExcelContentProperty;
-import org.example.backend.common.utils.DateUtil;
+import org.example.backend.common.util.DateUtil;
 
 import java.sql.Timestamp;
 import java.util.Date;

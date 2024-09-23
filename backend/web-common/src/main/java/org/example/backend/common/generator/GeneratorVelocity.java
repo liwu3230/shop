@@ -5,7 +5,7 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.example.backend.common.generator.mgb.CodeGenParam;
 import org.example.backend.common.generator.mgb.Config;
-import org.example.backend.common.utils.T;
+import org.example.backend.common.util.T;
 
 import java.io.File;
 import java.io.FileWriter;

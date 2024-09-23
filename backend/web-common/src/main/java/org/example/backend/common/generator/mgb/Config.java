@@ -37,6 +37,12 @@ public class Config {
             "vm" + File.separator + "Controller.java.vm",
             "vm" + File.separator + "Service.java.vm",
             "vm" + File.separator + "Param.java.vm",
+            "vm" + File.separator + "Import.java.vm",
+            "vm" + File.separator + "ImportListener.java.vm",
+            "vm" + File.separator + "Export.java.vm",
+
+            "vm" + File.separator + "config.tsx.vm",
+            "vm" + File.separator + "index.tsx.vm",
     };
 
     /**

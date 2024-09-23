@@ -1,0 +1,54 @@
+{
+  "name": "system-web",
+  "private": true,
+  "scripts": {
+    "start": "max dev",
+    "start:stat": "max dev ANALYZE=1",
+    "build": "max build",
+    "build:stat": "max build ANALYZE=1",
+    "build:prod": "cross-env UMI_ENV=prod max build",
+    "build:dev": "cross-env UMI_ENV=dev max build",
+    "postinstall": "max setup",
+    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "dependencies": {
+    "@ant-design/pro-layout": "^7.20.2",
+    "@fortawesome/fontawesome-free": "^6.1.1",
+    "@umijs/max": "^4.3.20",
+    "amis": "6.8.0",
+    "array-move": "^3.0.1",
+    "axios": "^0.21.1",
+    "copy-to-clipboard": "^3.3.1",
+    "lodash": "^4.17.21",
+    "react-canvas-nest": "^1.1.1",
+    "type-fest": "^1.0.2",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.177",
+    "@types/react": "^18.0.24",
+    "@types/react-dom": "^18.0.8",
+    "@types/uuid": "^8.3.0",
+    "bpmn-js": "^0.15.0",
+    "cross-env": "^7.0.3",
+    "lint-staged": "^10.0.7",
+    "prettier": "^2.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^4.1.2",
+    "yorkie": "^2.0.0"
+  }
+}

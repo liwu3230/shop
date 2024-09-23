@@ -1,0 +1,44 @@
+image: harbor.yy.com/front_end/efox:node-v12.18withGit
+
+stages:
+  - build
+  - test
+
+before_script:
+
+# cache:
+#   key: "$CI_COMMIT_REF_SLUG"
+#   paths:
+#     - node_modules/
+
+build:
+  stage: build
+  tags:
+    - webfe
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - dist/
+      - package.json
+  script:
+    - yarn
+    - yarn run build:prod
+  only:
+    refs:
+      - /^master$/
+
+test:
+  stage: test
+  tags:
+    - webfe
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - dist/
+      - package.json
+  script:
+    - yarn
+    - yarn run build:dev
+  only:
+    refs:
+      - /^develop.*$/

@@ -6,7 +6,7 @@ import org.example.backend.common.model.BaseParam;
 
 @Getter
 @Setter
-public class ${clazzName}Req extends BaseParam {
+public class ${clazzName}Param extends BaseParam {
 
     private Integer id;
 

@@ -10,17 +10,17 @@ import ${importListenerPackage}.${clazzName}ImportListener;
 import org.example.backend.common.model.BaseParam;
 import org.example.backend.common.model.R;
 import ${paramPackage}.${clazzName}Param;
-import org.example.backend.common.utils.AuthenticationUtil;
+import org.example.backend.common.security.utils.AuthenticationUtil;
 import ${servicePackage}.${clazzName}Service;
-import org.example.backend.common.utils.T;
+import org.example.backend.common.util.T;
 import org.mapstruct.Context;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import jakarta.annotation.Resource;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
