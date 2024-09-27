@@ -79,6 +79,29 @@
     align-items: center;
   }
 
+  .message {
+    //display: inline-block;
+    color: #fff;
+    cursor: pointer;
+
+    &__icon {
+      color: #fff;
+      font-size: 18px !important;
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+
+    &__badge {
+      font-size: 12px;
+      display: block !important;
+    }
+
+    &__dropdown {
+
+    }
+
+  }
+
   .notice {
     //display: inline-block;
     color: #fff;
@@ -107,9 +130,9 @@
 
     &__icon {
       color: #fff;
-      font-size: 20px !important;
+      font-size: 18px !important;
       padding-right: 20px;
-      padding-left: 12px;
+      padding-left: 10px;
     }
 
     &__name {
@@ -152,12 +175,58 @@
 
 
 .user_info__menu__item {
-  font-size: 15px;
+  font-size: 14px;
   letter-spacing: 1px;
 
 }
 
 .user_info__menu__icon {
-  font-size: 15px;
+  font-size: 14px;
   margin-right: 10px;
+}
+
+.message_card {
+  font-size: 13px !important;
+
+  // 局部覆盖消息卡片样式
+  :global {
+
+    .ant-cmdb-card-body {
+      padding: 4px !important;
+    }
+
+    .ant-cmdb-list-sm .ant-cmdb-list-item {
+      padding: 6px 14px !important;
+    }
+
+    .ant-cmdb-list-item-meta-avatar {
+      margin-right: 10px !important;
+    }
+
+    .ant-cmdb-list-item-meta {
+      display: flex;
+      flex: 1 1;
+      align-items: center !important;
+      max-width: 100%;
+    }
+
+    .ant-cmdb-list-item-meta-title {
+      margin-bottom: 0 !important;
+      color: rgba(0, 0, 0, 0.65);
+      font-size: 14px;
+      line-height: 1.5715;
+    }
+  }
+}
+
+.message_list {
+  cursor: pointer !important;
+  font-size: 13px !important;
+
+}
+
+.message_item {
+  cursor: pointer !important;
+  font-size: 13px !important;
+
 }

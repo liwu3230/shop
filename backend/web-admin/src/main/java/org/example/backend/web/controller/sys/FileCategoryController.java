@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.backend.common.model.BaseParam;
 import org.example.backend.common.model.R;
 import org.example.backend.common.model.param.SysAttachmentCategoryParam;
-import org.example.backend.common.model.param.SysAttachmentParam;
 import org.example.backend.common.service.FileCategoryService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -24,12 +23,6 @@ public class FileCategoryController {
     @Resource
     FileCategoryService fileCategoryService;
 
-    @ApiOperation(value = "分页查询附件列表")
-    @RequestMapping("/listAttByPage")
-    public R listAttByPage(SysAttachmentParam req) {
-        return R.data(fileCategoryService.listAttByPage(req));
-    }
-
     @ApiOperation(value = "查询附件分类树")
     @RequestMapping("/tree")
     public R groupList() {
@@ -37,8 +30,15 @@ public class FileCategoryController {
     }
 
     @ApiOperation(value = "保存附件分类")
-    @PostMapping("/saveOrUpdate")
-    public R saveOrUpdateGroup(@RequestBody @Validated({BaseParam.add.class, BaseParam.edit.class}) SysAttachmentCategoryParam req) {
+    @PostMapping("/save")
+    public R save(@RequestBody @Validated({BaseParam.add.class}) SysAttachmentCategoryParam req) {
+        fileCategoryService.saveOrUpdate(req);
+        return R.ok();
+    }
+
+    @ApiOperation(value = "编辑附件分类")
+    @PostMapping("/update")
+    public R update(@RequestBody @Validated({BaseParam.edit.class}) SysAttachmentCategoryParam req) {
         fileCategoryService.saveOrUpdate(req);
         return R.ok();
     }

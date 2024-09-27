@@ -58,7 +58,7 @@ public class LocalFileStorage extends AbstractStorage {
             uploadResult.setPath(fullPath);
         }
 
-        uploadResult.setDownloadUrl(String.format("%s/file/download?key=%s", fileStorageProperties.getDomain(), uploadResult.getObjectKey()));
+        uploadResult.setDownloadUrl(String.format("%s/file/download?id=%s", fileStorageProperties.getDomain(), uploadResult.getObjectKey()));
         return uploadResult;
     }
 

@@ -2,12 +2,15 @@ package org.example.backend.web.controller.sys;
 
 import cn.hutool.core.util.NumberUtil;
 import com.alibaba.druid.util.StringUtils;
+import io.swagger.annotations.ApiOperation;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnails;
+import org.example.backend.common.model.BaseParam;
 import org.example.backend.common.model.R;
+import org.example.backend.common.model.param.SysAttachmentParam;
 import org.example.backend.common.primary.entity.SysAttachment;
 import org.example.backend.common.service.FileStorageService;
 import org.example.backend.common.storage.config.FileModuleType;
@@ -15,10 +18,8 @@ import org.example.backend.common.storage.config.PutObjectResult;
 import org.example.backend.common.util.CommaSplitUtils;
 import org.example.backend.common.util.Delimiters;
 import org.example.backend.common.util.T;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -52,6 +53,12 @@ public class FileStorageController {
     @Resource
     private FileStorageService fileStorageService;
 
+    @ApiOperation(value = "分页查询附件列表")
+    @PostMapping("/listAttByPage")
+    public R listAttByPage(@RequestBody @Validated(BaseParam.list.class) SysAttachmentParam req) {
+        return R.data(fileStorageService.listAttByPage(req));
+    }
+
     @PostMapping("/upload")
     public R uploadFile(HttpServletRequest request, @RequestParam(required = false) Integer module,
                         @RequestParam(required = false, defaultValue = "0") Integer pid) throws Exception {
@@ -77,9 +84,27 @@ public class FileStorageController {
         return R.data(result);
     }
 
+    @GetMapping("/deleteByAttIds")
+    public R deleteByIds(@RequestParam List<Long> attIds) throws Exception {
+        fileStorageService.deleteByAttIds(attIds);
+        return R.ok();
+    }
+
     @RequestMapping("delete")
     public R delete(@RequestParam Long attId) throws Exception {
         fileStorageService.delete(attId);
+        return R.ok();
+    }
+
+    @RequestMapping("/updateFileName")
+    public R updateFileName(@RequestParam Long attId, @RequestParam String realName) throws Exception {
+        fileStorageService.updateFileName(attId, realName);
+        return R.ok();
+    }
+
+    @GetMapping("/updatePidByAttIds")
+    public R updatePidByAttIds(@RequestParam List<Long> attIds, @RequestParam Integer pid) throws Exception {
+        fileStorageService.updatePidByAttIds(attIds, pid);
         return R.ok();
     }
 

@@ -11,9 +11,19 @@ export function getMainMenu(): Promise<ResponseData> {
   return http.get(`${BASE_ROUTE_PREFIX}/common/menu`);
 }
 
+// 获取当前用户菜单列表
+export function getNotices(): Promise<ResponseData> {
+  return http.get(`${BASE_ROUTE_PREFIX}/common/getNotices`);
+}
+
 //获取当前用户信息
 export function getCurrentUser(): Promise<ResponseData> {
   return http.get(`${BASE_ROUTE_PREFIX}/common/getCurrentUser`);
+}
+
+//获取当前用户消息通知列表
+export function getNewsList(): Promise<ResponseData> {
+  return http.get(`${BASE_ROUTE_PREFIX}/common/getNewsList`);
 }
 
 //获取当前用户待办列表
@@ -31,9 +41,16 @@ export function login(data: PlainObject): Promise<ResponseData> {
   return http.post(`${BASE_ROUTE_PREFIX}/common/login`, data);
 }
 
+//修改密码
 export function updatePassword(data: PlainObject): Promise<ResponseData> {
   return http.post(`${BASE_ROUTE_PREFIX}/common/updatePassword`, data);
 }
+
+//修改密码
+export function allReadNotice(): Promise<ResponseData> {
+  return http.get(`${BASE_ROUTE_PREFIX}/common/allReadNotice`);
+}
+
 // 查询字典列表
 export function findDictByCode(params: Object): Promise<ResponseData> {
   return http.get(`${BASE_ROUTE_PREFIX}/common/findDictByCode`, {params});

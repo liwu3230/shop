@@ -14,6 +14,36 @@
   --IconPicker-tab-lineHeight: 2.375rem;
   --Form-select-placeholderColor: #bfbfbf !important;
   //--Form-item-color: var(--colors-neutral-text-2);
+
+  // 树形选择框选择时颜色
+  --inputTree-base-hover-color: var(--colors-brand-5) !important;
+  --inputTree-base-active-color: var(--colors-brand-5) !important;
+  --inputTree-base-active-expandColor: var(--colors-brand-5) !important;
+  --inputTree-base-hover-expandColor: var(--colors-brand-5) !important;
+  --Tree-item-onChekced-bg: #f0f8ff !important;
+}
+
+// 树形选择框选择时颜色
+.antd-Tree-item .is-checked {
+  border-radius: var(--Tree-item-onChekced-bg-borderRadius);
+  color: var(--colors-brand-5) !important;
+}
+
+.antd-Tree-item .is-checked .antd-Tree-itemText {
+  color: var(--colors-brand-5) !important;
+}
+
+.antd-Tree-item > div:hover .antd-Tree-itemText {
+  color: var(--inputTree-base-hover-color) !important;
+}
+
+.antd-Tree-item > div:active .antd-Tree-itemText {
+  color: var(--inputTree-base-active-color) !important;
+}
+
+// 卡片无描述则隐藏占位
+.antd-Card-meta:empty {
+  display: none;
 }
 
 .ant-cmdb-layout {
@@ -34,15 +64,15 @@
   z-index: 99999;
 }
 
-.ant-cmdb-table-content .ant-cmdb-table-thead > tr > th,
-.antd-Table-table > thead > tr > th {
-  background: #dde6f0 !important;
-  color: #355373;
-}
-
-.antd-Table-table > thead > tr > th:not(:last-child) {
-  border: none;
-}
+//.ant-cmdb-table-content .ant-cmdb-table-thead > tr > th,
+//.antd-Table-table > thead > tr > th {
+//  background: #dde6f0 !important;
+//  color: #355373;
+//}
+//
+//.antd-Table-table > thead > tr > th:not(:last-child) {
+//  border: none;
+//}
 
 .ant-cmdb-menu-submenu .ant-cmdb-menu-sub.ant-cmdb-menu-inline {
   background: #fff;
@@ -203,4 +233,8 @@ body {
 
 .antd-CBValue > * {
   width: 100%
+}
+
+.bg-light-dark {
+  background-color: #f8f8f8;
 }

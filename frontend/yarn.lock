@@ -2131,17 +2131,6 @@
     rimraf "5.0.1"
     webpack-5-chain "8.0.1"
 
-"@umijs/bundler-utils@4.3.19":
-  version "4.3.19"
-  resolved "https://npm-registry.yy.com/@umijs/bundler-utils/download/@umijs/bundler-utils-4.3.19.tgz#f9dbfa4697b4fac2d26806171932d9bed908bff5"
-  integrity sha1-+dv6Rpe0+sLSaAYXGTLZvtkIv/U=
-  dependencies:
-    "@umijs/utils" "4.3.19"
-    esbuild "0.21.4"
-    regenerate "^1.4.2"
-    regenerate-unicode-properties "10.1.1"
-    spdy "^4.0.2"
-
 "@umijs/bundler-utils@4.3.20":
   version "4.3.20"
   resolved "https://npm-registry.yy.com/@umijs/bundler-utils/download/@umijs/bundler-utils-4.3.20.tgz#b1a42dd93ee05f998bf5caeda049930372948b0d"
@@ -2165,13 +2154,13 @@
     spdy "^4.0.2"
 
 "@umijs/bundler-vite@4.3.20":
-  version "4.3.19"
-  resolved "https://npm-registry.yy.com/@umijs/bundler-vite/download/@umijs/bundler-vite-4.3.19.tgz#acad40be5e3808bf9bc9f301e30f80f9f7216f6b"
-  integrity sha1-rK1Avl44CL+byfMB4w+A+fchb2s=
+  version "4.3.20"
+  resolved "https://npm-registry.yy.com/@umijs/bundler-vite/download/@umijs/bundler-vite-4.3.20.tgz#bc8023d500acb64fb5558e77bfcce8105eca2dd9"
+  integrity sha1-vIAj1QCstk+1VY53v8zoEF7KLdk=
   dependencies:
     "@svgr/core" "6.5.1"
-    "@umijs/bundler-utils" "4.3.19"
-    "@umijs/utils" "4.3.19"
+    "@umijs/bundler-utils" "4.3.20"
+    "@umijs/utils" "4.3.20"
     "@vitejs/plugin-react" "4.0.0"
     core-js "3.34.0"
     less "4.1.3"
@@ -2403,9 +2392,9 @@
     is-equal "^1.6.4"
 
 "@umijs/plugin-run@4.3.20":
-  version "4.3.19"
-  resolved "https://npm-registry.yy.com/@umijs/plugin-run/download/@umijs/plugin-run-4.3.19.tgz#9de182e5887b1ee7bce09fc132aaae403d885d81"
-  integrity sha1-neGC5Yh7Hue84J/BMqquQD2IXYE=
+  version "4.3.20"
+  resolved "https://npm-registry.yy.com/@umijs/plugin-run/download/@umijs/plugin-run-4.3.20.tgz#e6d988c12fb8a3df55cca3a2b27c665c9cca045c"
+  integrity sha1-5tmIwS+4o99VzKOisnxmXJzKBFw=
   dependencies:
     tsx "3.12.2"
 
@@ -2562,14 +2551,6 @@
     chokidar "3.5.3"
     pino "7.11.0"
 
-"@umijs/utils@4.3.19":
-  version "4.3.19"
-  resolved "https://npm-registry.yy.com/@umijs/utils/download/@umijs/utils-4.3.19.tgz#1d585316ead88a313a31ccd01e7ef3e1fa333fb7"
-  integrity sha1-HVhTFurYijE6MczQHn7z4fozP7c=
-  dependencies:
-    chokidar "3.5.3"
-    pino "7.11.0"
-
 "@umijs/utils@4.3.20":
   version "4.3.20"
   resolved "https://npm-registry.yy.com/@umijs/utils/download/@umijs/utils-4.3.20.tgz#cc8d18273a8fc0e14f620e3fb5b1fdaec23064b1"
@@ -2586,9 +2567,9 @@
     valtio "1.11.2"
 
 "@umijs/zod2ts@4.3.20":
-  version "4.3.19"
-  resolved "https://npm-registry.yy.com/@umijs/zod2ts/download/@umijs/zod2ts-4.3.19.tgz#81204066ff4937630a3e522a4fcb0ef26a55b8bd"
-  integrity sha1-gSBAZv9JN2MKPlIqT8sO8mpVuL0=
+  version "4.3.20"
+  resolved "https://npm-registry.yy.com/@umijs/zod2ts/download/@umijs/zod2ts-4.3.20.tgz#56fac19d055d35dc4f6e868eac18b0107d68cbbd"
+  integrity sha1-VvrBnQVdNdxPboaOrBiwEH1oy70=
 
 "@vitejs/plugin-react@4.0.0":
   version "4.0.0"

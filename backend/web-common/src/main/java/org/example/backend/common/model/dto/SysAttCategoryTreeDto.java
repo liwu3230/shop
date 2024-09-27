@@ -14,6 +14,11 @@ public class SysAttCategoryTreeDto extends SysAttachmentCategory implements Base
 
     private List children;
 
+    private String icon = "folder";
+    private Boolean creatable = true;
+    private Boolean editable = true;
+    private Boolean removable = true;
+
     @Override
     public Integer getNodeId() {
         return this.getId();
@@ -33,4 +38,35 @@ public class SysAttCategoryTreeDto extends SysAttachmentCategory implements Base
         return children;
     }
 
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public Boolean getCreatable() {
+        return creatable;
+    }
+
+    public void setCreatable(Boolean creatable) {
+        this.creatable = creatable;
+    }
+
+    public Boolean getEditable() {
+        return editable;
+    }
+
+    public void setEditable(Boolean editable) {
+        this.editable = editable;
+    }
+
+    public Boolean getRemovable() {
+        return removable;
+    }
+
+    public void setRemovable(Boolean removable) {
+        this.removable = removable;
+    }
 }

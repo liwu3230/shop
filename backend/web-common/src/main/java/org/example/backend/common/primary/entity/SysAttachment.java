@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * @Description: 附件表
  * @Author: liwu3
- * @Date: 2024/09/23 11:39
+ * @Date: 2024/09/24 16:26
  */
 public class SysAttachment implements Serializable {
     /**
@@ -83,6 +83,11 @@ public class SysAttachment implements Serializable {
      * 上传用户
      */
     private String userName;
+
+    /**
+     * 下载地址
+     */
+    private String downloadUrl;
 
     private static final long serialVersionUID = 1L;
 
@@ -206,6 +211,14 @@ public class SysAttachment implements Serializable {
         this.userName = userName;
     }
 
+    public String getDownloadUrl() {
+        return downloadUrl;
+    }
+
+    public void setDownloadUrl(String downloadUrl) {
+        this.downloadUrl = downloadUrl;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -227,6 +240,7 @@ public class SysAttachment implements Serializable {
         sb.append(", remark=").append(remark);
         sb.append(", scanToken=").append(scanToken);
         sb.append(", userName=").append(userName);
+        sb.append(", downloadUrl=").append(downloadUrl);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

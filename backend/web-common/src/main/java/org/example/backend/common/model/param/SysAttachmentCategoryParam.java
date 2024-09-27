@@ -15,11 +15,14 @@ public class SysAttachmentCategoryParam {
 
     private Integer id;
 
-    @NotNull(message = "pid不能为空", groups = {BaseParam.edit.class})
-    private Integer pid;
-
     @NotBlank(message = "名称不能为空", groups = {BaseParam.add.class, BaseParam.edit.class})
     private String name;
 
-    private String enname;
+    @NotNull(message = "parent不能为空", groups = {BaseParam.add.class})
+    private CategoryParent parent;
+
+    @Data
+    public static class CategoryParent {
+        private Integer id;
+    }
 }

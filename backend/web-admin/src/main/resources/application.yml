@@ -96,6 +96,7 @@ security:
     - /common/login
     - /common/register
     - /common/logout
+    - /file/download
     - /actuator/health
     - /druid/**
     - /swagger-ui.html
@@ -112,6 +113,7 @@ security:
 storage:
   platform: local  #选择对象存储服务 local/oss
   local-dir: /data/store
+  domain: http://127.0.0.1:${server.port}${server.servlet.context-path}
 
 
 

@@ -156,11 +156,11 @@
         <!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
         <!--        </table>-->
 
-        <table tableName="sys_attachment_category" domainObjectName="SysAttachmentCategory" mapperName="SysAttachmentCategoryDao"
-               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
-               enableSelectByExample="true" selectByExampleQueryId="true">
-            <generatedKey column="id" sqlStatement="JDBC"/>
-        </table>
+<!--        <table tableName="sys_attachment_category" domainObjectName="SysAttachmentCategory" mapperName="SysAttachmentCategoryDao"-->
+<!--               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+<!--               enableSelectByExample="true" selectByExampleQueryId="true">-->
+<!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
+<!--        </table>-->
 
         <table tableName="sys_attachment" domainObjectName="SysAttachment" mapperName="SysAttachmentDao"
                enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"

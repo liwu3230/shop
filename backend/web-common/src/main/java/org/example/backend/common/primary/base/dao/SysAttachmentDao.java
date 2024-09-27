@@ -37,14 +37,16 @@ public interface SysAttachmentDao {
         "pid, image_type, ",
         "module_type, create_time, ",
         "update_time, remark, ",
-        "scan_token, user_name)",
+        "scan_token, user_name, ",
+        "download_url)",
         "values (#{name,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, ",
         "#{attDir,jdbcType=VARCHAR}, #{sattDir,jdbcType=VARCHAR}, ",
         "#{attSize,jdbcType=BIGINT}, #{attType,jdbcType=VARCHAR}, ",
         "#{pid,jdbcType=INTEGER}, #{imageType,jdbcType=TINYINT}, ",
         "#{moduleType,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, ",
         "#{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, ",
-        "#{scanToken,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR})"
+        "#{scanToken,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, ",
+        "#{downloadUrl,jdbcType=VARCHAR})"
     })
     @Options(useGeneratedKeys=true,keyProperty="attId")
     int insert(SysAttachment record);
@@ -69,14 +71,15 @@ public interface SysAttachmentDao {
         @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="remark", property="remark", jdbcType=JdbcType.VARCHAR),
         @Result(column="scan_token", property="scanToken", jdbcType=JdbcType.VARCHAR),
-        @Result(column="user_name", property="userName", jdbcType=JdbcType.VARCHAR)
+        @Result(column="user_name", property="userName", jdbcType=JdbcType.VARCHAR),
+        @Result(column="download_url", property="downloadUrl", jdbcType=JdbcType.VARCHAR)
     })
     List<SysAttachment> selectByExample(SysAttachmentExample example);
 
     @Select({
         "select",
         "att_id, `name`, real_name, att_dir, satt_dir, att_size, att_type, pid, image_type, ",
-        "module_type, create_time, update_time, remark, scan_token, user_name",
+        "module_type, create_time, update_time, remark, scan_token, user_name, download_url",
         "from sys_attachment",
         "where att_id = #{attId,jdbcType=BIGINT}"
     })
@@ -95,7 +98,8 @@ public interface SysAttachmentDao {
         @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="remark", property="remark", jdbcType=JdbcType.VARCHAR),
         @Result(column="scan_token", property="scanToken", jdbcType=JdbcType.VARCHAR),
-        @Result(column="user_name", property="userName", jdbcType=JdbcType.VARCHAR)
+        @Result(column="user_name", property="userName", jdbcType=JdbcType.VARCHAR),
+        @Result(column="download_url", property="downloadUrl", jdbcType=JdbcType.VARCHAR)
     })
     SysAttachment selectByPrimaryKey(Long attId);
 
@@ -123,7 +127,8 @@ public interface SysAttachmentDao {
           "update_time = #{updateTime,jdbcType=TIMESTAMP},",
           "remark = #{remark,jdbcType=VARCHAR},",
           "scan_token = #{scanToken,jdbcType=VARCHAR},",
-          "user_name = #{userName,jdbcType=VARCHAR}",
+          "user_name = #{userName,jdbcType=VARCHAR},",
+          "download_url = #{downloadUrl,jdbcType=VARCHAR}",
         "where att_id = #{attId,jdbcType=BIGINT}"
     })
     int updateByPrimaryKey(SysAttachment record);

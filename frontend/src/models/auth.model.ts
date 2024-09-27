@@ -26,27 +26,27 @@ export default function useAuthModel() {
     setCurrentUser(data);
   }, []);
 
-  const [todoCount, setTodoCount] = useState([]);
-  const timerRef = useRef(null);
-  useEffect(() => {
-    getTodoCount().then((res) => {
-      if (res.code === 0) setTodoCount(res.data.count);
-    });
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
-    }
-    timerRef.current = setInterval(() => getTodoCount().then((res) => {
-      if (res.code === 0) setTodoCount(res.data.count);
-    }), 60000);
-    return () => {
-      clearInterval(timerRef.current);
-    }
-  }, []);
-
-  const fetchTodoCount = useCallback(async () => {
-    const {data} = await getTodoCount();
-    setTodoCount(data.count);
-  }, []);
+  // const [todoCount, setTodoCount] = useState([]);
+  // const timerRef = useRef(null);
+  // useEffect(() => {
+  //   getTodoCount().then((res) => {
+  //     if (res.code === 0) setTodoCount(res.data.count);
+  //   });
+  //   if (timerRef.current) {
+  //     clearInterval(timerRef.current);
+  //   }
+  //   timerRef.current = setInterval(() => getTodoCount().then((res) => {
+  //     if (res.code === 0) setTodoCount(res.data.count);
+  //   }), 60000);
+  //   return () => {
+  //     clearInterval(timerRef.current);
+  //   }
+  // }, []);
+  //
+  // const fetchTodoCount = useCallback(async () => {
+  //   const {data} = await getTodoCount();
+  //   setTodoCount(data.count);
+  // }, []);
 
 
   return {
@@ -54,7 +54,7 @@ export default function useAuthModel() {
     fetchPermissionList,
     currentUser,
     fetchCurrentUser,
-    todoCount,
-    fetchTodoCount
+    // todoCount,
+    // fetchTodoCount
   };
 }

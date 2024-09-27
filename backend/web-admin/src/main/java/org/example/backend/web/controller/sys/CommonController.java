@@ -2,10 +2,12 @@ package org.example.backend.web.controller.sys;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.example.backend.common.model.BaseParam;
 import org.example.backend.common.model.R;
+import org.example.backend.common.model.dto.SysNoticeDto;
 import org.example.backend.common.model.dto.SysSimpleUserDto;
 import org.example.backend.common.model.enums.TokenType;
 import org.example.backend.common.model.param.LoginParam;
@@ -22,7 +24,6 @@ import org.example.backend.common.util.T;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import jakarta.annotation.Resource;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLEncoder;
@@ -168,6 +169,42 @@ public class CommonController {
     public R findBreadcrumb() {
         Integer userId = AuthenticationUtil.getUserId();
         return R.data(sysMenuService.findBreadcrumbByUser(userId));
+    }
+
+    @ApiOperation(value = "消息全部已读")
+    @GetMapping("/allReadNotice")
+    public R allReadNotice() {
+        // todo
+        return R.ok();
+    }
+
+    @ApiOperation(value = "查询消息通知列表")
+    @GetMapping("/getNewsList")
+    public R getNewsList() {
+        Integer userId = AuthenticationUtil.getUserId();
+        List<SysNoticeDto> news = new ArrayList<>();
+        SysNoticeDto dto = new SysNoticeDto();
+        dto.setType(1);
+        dto.setTitle("待发货订单提醒");
+        dto.setDesc("您有1103个待发货的订单");
+        dto.setUrl("web/article/list");
+
+        SysNoticeDto dto2 = new SysNoticeDto();
+        dto2.setType(2);
+        dto2.setTitle("库存报警");
+        dto2.setDesc("您有23个商品库存预警");
+        dto2.setUrl("/web/article/list2");
+
+        SysNoticeDto dto3 = new SysNoticeDto();
+        dto3.setType(3);
+        dto3.setTitle("评论回复");
+        dto3.setDesc("您有684条评论待回复");
+        dto3.setUrl("/web/article/list3");
+
+        news.add(dto);
+        news.add(dto2);
+        news.add(dto3);
+        return R.data(news);
     }
 
     @ApiOperation(value = "查询字典列表")

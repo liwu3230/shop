@@ -233,7 +233,24 @@ export const routes: IConfig['routes'] = [
           },
         ],
       },
-
+      //附件相关
+      {
+        exact: false,
+        path: `${ROUTE_PATH_PREFIX}/attachment`,
+        component: '@/components/PureRouter',
+        routes: [
+          {
+            exact: true,
+            path: `${ROUTE_PATH_PREFIX}/attachment`,
+            redirect: `${ROUTE_PATH_PREFIX}/attachment/list`,
+          },
+          {
+            exact: true,
+            path: `${ROUTE_PATH_PREFIX}/attachment/list`,
+            component: '@/pages/Attachment',
+          },
+        ],
+      },
       /**
        * 业务相关
        */
@@ -251,210 +268,6 @@ export const routes: IConfig['routes'] = [
             exact: true,
             path: `${ROUTE_PATH_PREFIX}/clientDetails/list`,
             component: '@/pages/ClientDetails',
-          },
-        ],
-      },
-      {
-        exact: false,
-        path: `${ROUTE_PATH_PREFIX}/appUser`,
-        component: '@/components/PureRouter',
-        routes: [
-          {
-            exact: true,
-            path: `${ROUTE_PATH_PREFIX}/appUser`,
-            redirect: `${ROUTE_PATH_PREFIX}/appUser/list`,
-          },
-          {
-            exact: true,
-            path: `${ROUTE_PATH_PREFIX}/appUser/list`,
-            component: '@/pages/AppUser',
-          },
-        ],
-      },
-      {
-        exact: false,
-        path: `${ROUTE_PATH_PREFIX}/article`,
-        component: '@/components/PureRouter',
-        routes: [
-          {
-            exact: true,
-            path: `${ROUTE_PATH_PREFIX}/article`,
-            redirect: `${ROUTE_PATH_PREFIX}/article/list`,
-          },
-          {
-            exact: true,
-            path: `${ROUTE_PATH_PREFIX}/article/list`,
-            component: '@/pages/Article',
-          },
-        ],
-      },
-      {
-        exact: false,
-        path: `${ROUTE_PATH_PREFIX}/articleType`,
-        component: '@/components/PureRouter',
-        routes: [
-          {
-            exact: true,
-            path: `${ROUTE_PATH_PREFIX}/articleType`,
-            redirect: `${ROUTE_PATH_PREFIX}/articleType/list`,
-          },
-          {
-            exact: true,
-            path: `${ROUTE_PATH_PREFIX}/articleType/list`,
-            component: '@/pages/ArticleType',
-          },
-        ],
-      },
-      {
-        exact: false,
-        path: `${ROUTE_PATH_PREFIX}/taskTag`,
-        component: '@/components/PureRouter',
-        routes: [
-          {
-            exact: true,
-            path: `${ROUTE_PATH_PREFIX}/taskTag`,
-            redirect: `${ROUTE_PATH_PREFIX}/taskTag/list`,
-          },
-          {
-            exact: true,
-            path: `${ROUTE_PATH_PREFIX}/taskTag/list`,
-            component: '@/pages/TaskTag',
-          },
-        ],
-      },
-      {
-        exact: false,
-        path: `${ROUTE_PATH_PREFIX}/appUserTag`,
-        component: '@/components/PureRouter',
-        routes: [
-          {
-            exact: true,
-            path: `${ROUTE_PATH_PREFIX}/appUserTag`,
-            redirect: `${ROUTE_PATH_PREFIX}/appUserTag/list`,
-          },
-          {
-            exact: true,
-            path: `${ROUTE_PATH_PREFIX}/appUserTag/list`,
-            component: '@/pages/AppUserTag',
-          },
-        ],
-      },
-      {
-        exact: false,
-        path: `${ROUTE_PATH_PREFIX}/project`,
-        component: '@/components/PureRouter',
-        routes: [
-          {
-            exact: true,
-            path: `${ROUTE_PATH_PREFIX}/project`,
-            redirect: `${ROUTE_PATH_PREFIX}/project/list`,
-          },
-          {
-            exact: true,
-            path: `${ROUTE_PATH_PREFIX}/project/list`,
-            component: '@/pages/Project',
-          },
-        ],
-      },
-      {
-        exact: false,
-        path: `${ROUTE_PATH_PREFIX}/store`,
-        component: '@/components/PureRouter',
-        routes: [
-          {
-            exact: true,
-            path: `${ROUTE_PATH_PREFIX}/store`,
-            redirect: `${ROUTE_PATH_PREFIX}/store/list`,
-          },
-          {
-            exact: true,
-            path: `${ROUTE_PATH_PREFIX}/store/list`,
-            component: '@/pages/Store',
-          },
-        ],
-      },
-      {
-        exact: false,
-        path: `${ROUTE_PATH_PREFIX}/taskInfo`,
-        component: '@/components/PureRouter',
-        routes: [
-          {
-            exact: true,
-            path: `${ROUTE_PATH_PREFIX}/taskInfo`,
-            redirect: `${ROUTE_PATH_PREFIX}/taskInfo/list`,
-          },
-          {
-            exact: true,
-            path: `${ROUTE_PATH_PREFIX}/taskInfo/list`,
-            component: '@/pages/TaskInfo',
-          },
-        ],
-      },
-      {
-        exact: false,
-        path: `${ROUTE_PATH_PREFIX}/msgRecord`,
-        component: '@/components/PureRouter',
-        routes: [
-          {
-            exact: true,
-            path: `${ROUTE_PATH_PREFIX}/msgRecord`,
-            redirect: `${ROUTE_PATH_PREFIX}/msgRecord/list`,
-          },
-          {
-            exact: true,
-            path: `${ROUTE_PATH_PREFIX}/msgRecord/list`,
-            component: '@/pages/MsgRecord',
-          },
-        ],
-      },
-      {
-        exact: false,
-        path: `${ROUTE_PATH_PREFIX}/taskOrder`,
-        component: '@/components/PureRouter',
-        routes: [
-          {
-            exact: true,
-            path: `${ROUTE_PATH_PREFIX}/taskOrder`,
-            redirect: `${ROUTE_PATH_PREFIX}/taskOrder/list`,
-          },
-          {
-            exact: true,
-            path: `${ROUTE_PATH_PREFIX}/taskOrder/list`,
-            component: '@/pages/TaskOrder',
-          },
-        ],
-      },
-      {
-        exact: false,
-        path: `${ROUTE_PATH_PREFIX}/taskOrderBill`,
-        component: '@/components/PureRouter',
-        routes: [
-          {
-            exact: true,
-            path: `${ROUTE_PATH_PREFIX}/taskOrderBill`,
-            redirect: `${ROUTE_PATH_PREFIX}/taskOrderBill/list`,
-          },
-          {
-            exact: true,
-            path: `${ROUTE_PATH_PREFIX}/taskOrderBill/list`,
-            component: '@/pages/TaskOrderBill',
-          },
-        ],
-      },
-      {
-        exact: false,
-        path: `${ROUTE_PATH_PREFIX}/miniprogram`,
-        component: '@/components/PureRouter',
-        routes: [
-          {
-            exact: true,
-            path: `${ROUTE_PATH_PREFIX}/miniprogram`,
-            redirect: `${ROUTE_PATH_PREFIX}/miniprogram/list`,
-          },
-          {
-            exact: true,
-            path: `${ROUTE_PATH_PREFIX}/miniprogram/list`,
-            component: '@/pages/Miniprogram',
           },
         ],
       },

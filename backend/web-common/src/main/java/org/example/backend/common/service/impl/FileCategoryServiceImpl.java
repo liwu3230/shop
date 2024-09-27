@@ -3,13 +3,10 @@ package org.example.backend.common.service.impl;
 import com.google.common.base.Preconditions;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.example.backend.common.model.Page;
 import org.example.backend.common.model.dto.SysAttCategoryTreeDto;
 import org.example.backend.common.model.param.SysAttachmentCategoryParam;
-import org.example.backend.common.model.param.SysAttachmentParam;
 import org.example.backend.common.primary.base.dao.SysAttachmentCategoryDao;
 import org.example.backend.common.primary.base.dao.SysAttachmentDao;
-import org.example.backend.common.primary.entity.SysAttachment;
 import org.example.backend.common.primary.entity.SysAttachmentCategory;
 import org.example.backend.common.primary.entity.SysAttachmentCategoryExample;
 import org.example.backend.common.primary.entity.SysAttachmentExample;
@@ -20,7 +17,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,24 +36,6 @@ public class FileCategoryServiceImpl implements FileCategoryService {
     SysAttachmentDao sysAttachmentDao;
 
     @Override
-    public Page<SysAttachment> listAttByPage(SysAttachmentParam req) {
-        SysAttachmentExample example = new SysAttachmentExample();
-        SysAttachmentExample.Criteria criteria = example.createCriteria();
-        if (T.GT(req.getPid(), 0)) {
-            criteria.andPidEqualTo(req.getPid());
-        }
-        long count = sysAttachmentDao.countByExample(example);
-        example.setLimit(req.getLimit());
-        example.setOffset(req.getOffset());
-        example.setOrderByClause(" create_time desc");
-        List<SysAttachment> list = sysAttachmentDao.selectByExample(example);
-        if (T.isEmpty(list)) {
-            return new Page<>(Collections.emptyList(), req.getPage(), req.getLimit(), count);
-        }
-        return new Page<>(list, req.getPage(), req.getLimit(), count);
-    }
-
-    @Override
     public List<SysAttCategoryTreeDto> listTree() {
         List<SysAttachmentCategory> list = sysAttachmentCategoryDao.selectByExample(null);
         List<SysAttCategoryTreeDto> dtoList = list.stream().map(entity -> {
@@ -64,7 +43,18 @@ public class FileCategoryServiceImpl implements FileCategoryService {
             BeanUtils.copyProperties(entity, dto);
             return dto;
         }).collect(Collectors.toList());
-        return TreeBuildFactory.transToTree(dtoList);
+
+        SysAttCategoryTreeDto root = new SysAttCategoryTreeDto();
+        root.setId(0);
+        root.setName("全部分组");
+        root.setPid(-1);
+        root.setIcon("folder");
+        root.setCreatable(true);
+        root.setEditable(false);
+        root.setRemovable(false);
+        dtoList.add(root);
+
+        return TreeBuildFactory.transToTree(dtoList, Comparator.nullsLast(Comparator.comparing(SysAttCategoryTreeDto::getId, Comparator.nullsLast(Integer::compareTo))));
     }
 
     @Transactional(rollbackFor = Exception.class)
@@ -73,7 +63,16 @@ public class FileCategoryServiceImpl implements FileCategoryService {
         SysAttachmentCategory category = new SysAttachmentCategory();
         BeanUtils.copyProperties(req, category);
         validate(req);
+        Integer pid = 0;
+        if (T.nonNull(req.getParent()) && T.nonNull(req.getParent().getId())) {
+            pid = req.getParent().getId();
+        }
+        category.setPid(pid);
+        category.setEnname("");
+
         if (T.GT(category.getId(), 0)) {
+            SysAttachmentCategory old = sysAttachmentCategoryDao.selectByPrimaryKey(category.getId());
+            category.setPid(old.getPid());
             sysAttachmentCategoryDao.updateByPrimaryKey(category);
         } else {
             sysAttachmentCategoryDao.insert(category);

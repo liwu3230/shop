@@ -84,6 +84,10 @@ public class SysAttachmentSqlProvider {
             sql.VALUES("user_name", "#{userName,jdbcType=VARCHAR}");
         }
         
+        if (record.getDownloadUrl() != null) {
+            sql.VALUES("download_url", "#{downloadUrl,jdbcType=VARCHAR}");
+        }
+        
         return sql.toString();
     }
 
@@ -108,6 +112,7 @@ public class SysAttachmentSqlProvider {
         sql.SELECT("remark");
         sql.SELECT("scan_token");
         sql.SELECT("user_name");
+        sql.SELECT("download_url");
         sql.FROM("sys_attachment");
         applyWhere(sql, example, false);
         
@@ -188,6 +193,10 @@ public class SysAttachmentSqlProvider {
             sql.SET("user_name = #{record.userName,jdbcType=VARCHAR}");
         }
         
+        if (record.getDownloadUrl() != null) {
+            sql.SET("download_url = #{record.downloadUrl,jdbcType=VARCHAR}");
+        }
+        
         applyWhere(sql, example, true);
         return sql.toString();
     }
@@ -211,6 +220,7 @@ public class SysAttachmentSqlProvider {
         sql.SET("remark = #{record.remark,jdbcType=VARCHAR}");
         sql.SET("scan_token = #{record.scanToken,jdbcType=VARCHAR}");
         sql.SET("user_name = #{record.userName,jdbcType=VARCHAR}");
+        sql.SET("download_url = #{record.downloadUrl,jdbcType=VARCHAR}");
         
         SysAttachmentExample example = (SysAttachmentExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -275,6 +285,10 @@ public class SysAttachmentSqlProvider {
         
         if (record.getUserName() != null) {
             sql.SET("user_name = #{userName,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getDownloadUrl() != null) {
+            sql.SET("download_url = #{downloadUrl,jdbcType=VARCHAR}");
         }
         
         sql.WHERE("att_id = #{attId,jdbcType=BIGINT}");
